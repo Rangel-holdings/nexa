@@ -90,9 +90,11 @@ function LogoMark({ variant = 'light' }) {
   return (
     <a href="#top" className={`logo ${onDark ? 'logo--on-dark' : ''}`} aria-label="Nexa Rx home">
       <span className="logo__mark" aria-hidden="true">
-        <svg viewBox="0 0 48 48" width="36" height="36">
-          <rect x="2" y="16" width="22" height="16" rx="8" fill="currentColor" className="logo__pill-a" />
-          <rect x="24" y="16" width="22" height="16" rx="8" fill="#4DAA9A" />
+        <svg viewBox="0 0 40 40" width="34" height="34">
+          <rect width="40" height="40" rx="10" fill={onDark ? '#0B1220' : '#0F1722'} />
+          <path d="M11 9h5.2v14.8L26.8 9H32v24h-5.2V18.2L16.2 33H11V9z" fill="#F2F4F7" />
+          <path d="M13.5 30.5L29.5 12" stroke="#4DAA9A" strokeWidth="3.2" strokeLinecap="round" />
+          <circle cx="12.6" cy="31.2" r="1.8" fill="#4DAA9A" />
         </svg>
       </span>
       <span className="logo__word">

@@ -9,6 +9,17 @@ npm install
 npm run dev
 ```
 
+## Deploy (Vercel)
+
+Repo: [github.com/Emmanuelombaye/nexa](https://github.com/Emmanuelombaye/nexa)
+
+1. Import the repo in Vercel  
+2. Framework preset: **Vite** (or leave auto)  
+3. Build: `npm run build` · Output: `dist`  
+4. `vercel.json` already sets SPA rewrites + asset caching  
+
+Favicon: `/favicon.svg` (NX monogram on midnight navy)
+
 ## Brand assets
 
 Source brand boards live in `public/brand/` (copied from the design PNGs in this folder).
