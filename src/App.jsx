@@ -194,14 +194,37 @@ function SiteHeader({ scrolled, menuOpen, setMenuOpen, onNavigate }) {
   )
 }
 
+function useReveal() {
+  useEffect(() => {
+    const nodes = Array.from(document.querySelectorAll('[data-reveal]'))
+    if (!nodes.length) return undefined
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('is-in')
+          else entry.target.classList.remove('is-in')
+        })
+      },
+      { threshold: 0.16, rootMargin: '0px 0px -6% 0px' },
+    )
+    nodes.forEach((n) => {
+      const rect = n.getBoundingClientRect()
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) n.classList.add('is-in')
+      io.observe(n)
+    })
+    return () => io.disconnect()
+  }, [])
+}
+
 function HomePage({ onNavigate }) {
   const [openFaq, setOpenFaq] = useState(0)
+  useReveal()
 
   return (
     <main>
       <section className="hero">
         <div className="container hero__grid">
-          <div className="hero__copy">
+          <div className="hero__copy" data-reveal="left">
             <p className="eyebrow">Personal care. Real results.</p>
             <h1>
               Your care.<br />
@@ -224,9 +247,8 @@ function HomePage({ onNavigate }) {
             </ul>
           </div>
 
-          <div className="hero__visual">
-            <div className="hero__stage" style={{ backgroundImage: 'url(/images/hero-lifestyle.png)' }} aria-hidden="true" />
-            <div className="hero-card">
+          <div className="hero__visual" data-reveal="right">
+            <article className="hero-card">
               <div className="hero-card__media" style={{ backgroundImage: 'url(/images/treatment-weightloss.png)' }} />
               <div className="hero-card__body">
                 <span className="pill">Most potent</span>
@@ -238,10 +260,7 @@ function HomePage({ onNavigate }) {
                   <a href="#/start/glp1" className="btn btn--primary btn--sm">Get started</a>
                 </div>
               </div>
-            </div>
-            <div className="hero-float">
-              <img src="/images/product-packaging.png" alt="Nexa Rx discreet packaging" />
-            </div>
+            </article>
           </div>
         </div>
       </section>
@@ -272,8 +291,8 @@ function HomePage({ onNavigate }) {
             <p className="section__sub">Unlimited physician access. No hidden fees.</p>
           </div>
           <div className="treat-grid">
-            {TREATMENTS.map((t) => (
-              <article key={t.id} className="treat-card">
+            {TREATMENTS.map((t, i) => (
+              <article key={t.id} className="treat-card" data-reveal="up" style={{ '--delay': `${i * 70}ms` }}>
                 <div className="treat-card__media" style={{ backgroundImage: `url(${t.image})` }} />
                 <div className="treat-card__body">
                   <span className="pill">{t.badge}</span>
@@ -294,7 +313,7 @@ function HomePage({ onNavigate }) {
 
       <section id="quality" className="section quality">
         <div className="container quality__grid">
-          <div>
+          <div data-reveal="left">
             <p className="eyebrow">Doctor-led</p>
             <h2>Rx prescribed treatment protocols.</h2>
             <p className="lede">
@@ -307,7 +326,7 @@ function HomePage({ onNavigate }) {
               <li>Nationwide discreet shipping</li>
             </ul>
           </div>
-          <div className="stat-grid">
+          <div className="stat-grid" data-reveal="right">
             <div className="stat-card">
               <strong>15%</strong>
               <span>Average weight loss in 3 months*</span>
@@ -321,7 +340,7 @@ function HomePage({ onNavigate }) {
               <span>To complete eligibility assessment</span>
             </div>
             <div className="stat-card stat-card--brand">
-              <img src="/images/product-packaging.png" alt="Premium packaging" />
+              <img src="/images/hero-product.png" alt="Nexa Rx premium packaging" />
             </div>
           </div>
         </div>
@@ -329,18 +348,18 @@ function HomePage({ onNavigate }) {
 
       <section id="how" className="section how">
         <div className="container">
-          <div className="section__head section__head--center">
+          <div className="section__head section__head--center" data-reveal="up">
             <p className="eyebrow">Nationwide shipping</p>
             <h2>Custom care, simplified.</h2>
             <p className="section__sub">No insurance headaches. Just results.</p>
             <a href="#/start" className="btn btn--primary">Start your journey</a>
           </div>
-          <div className="how__visual">
+          <div className="how__visual" data-reveal="up">
             <img src="/images/care-journey.png" alt="Nexa Rx care journey" />
           </div>
           <div className="steps">
-            {STEPS.map((s) => (
-              <article key={s.n} className="step">
+            {STEPS.map((s, i) => (
+              <article key={s.n} className="step" data-reveal="up" style={{ '--delay': `${i * 80}ms` }}>
                 <span className="step__n">Step {s.n}</span>
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
@@ -352,7 +371,7 @@ function HomePage({ onNavigate }) {
 
       <section className="brand-band">
         <div className="container brand-band__grid">
-          <div>
+          <div data-reveal="left">
             <p className="eyebrow eyebrow--teal">Care that connects. Results that last.</p>
             <h2>Built for modern wellness.</h2>
             <p>
@@ -365,22 +384,47 @@ function HomePage({ onNavigate }) {
               <a href="#/start" className="brand-action"><span>♡</span> Begin your care plan</a>
             </div>
           </div>
-          <div className="brand-band__visual">
+          <div className="brand-band__visual" data-reveal="right">
             <img src="/images/hero-lifestyle.png" alt="Modern wellness lifestyle" />
+          </div>
+        </div>
+      </section>
+
+      <section className="start-now" id="start-now">
+        <div className="container start-now__grid">
+          <div className="start-now__media" data-reveal="left">
+            <img
+              src="/images/care-starts-products.png"
+              alt="Nexa Rx Tirzepatide and Semaglutide packaging"
+            />
+          </div>
+          <div className="start-now__copy" data-reveal="right">
+            <h2>
+              Your care.<br />
+              <em>Starts now.</em>
+            </h2>
+            <hr className="start-now__rule" />
+            <p>
+              Join members who transformed their root-cause approach to healthcare with personalized,
+              clinician-guided treatments — delivered discreetly to your door.
+            </p>
+            <a href="#/start" className="btn btn--primary btn--lg btn--square">
+              Browse products <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </section>
 
       <section id="faq" className="section faq">
         <div className="container faq__grid">
-          <div>
+          <div data-reveal="left">
             <p className="eyebrow">Support</p>
             <h2>Common questions regarding your care.</h2>
             <p className="section__sub">
               We believe in transparency — treatments, process, and our commitment to your health.
             </p>
           </div>
-          <div className="faq__list">
+          <div className="faq__list" data-reveal="right">
             {FAQS.map((item, i) => (
               <div key={item.q} className={`faq__item ${openFaq === i ? 'is-open' : ''}`}>
                 <button type="button" onClick={() => setOpenFaq(openFaq === i ? -1 : i)}>
@@ -395,14 +439,14 @@ function HomePage({ onNavigate }) {
       </section>
 
       <section className="cta">
-        <div className="container cta__inner">
+        <div className="container cta__inner" data-reveal="up">
           <p className="eyebrow eyebrow--teal">Your health, optimized.</p>
-          <h2>Your care. Starts now.</h2>
+          <h2>Ready when you are.</h2>
           <p>
-            Join members building a root-cause approach to health with personalized, clinician-guided treatments.
+            Start with a short eligibility check. A licensed clinician reviews your case — typically within 24 hours.
           </p>
           <div className="cta__actions">
-            <a href="#/start" className="btn btn--primary btn--lg">Browse products</a>
+            <a href="#/start" className="btn btn--primary btn--lg">Get started</a>
             <a href="#/how" className="btn btn--on-dark btn--lg" onClick={(e) => onNavigate(e, 'how')}>How it works</a>
           </div>
         </div>
