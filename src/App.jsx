@@ -146,33 +146,50 @@ function LogoMark({ variant = 'light', href = '#/' }) {
 }
 
 function SiteHeader({ scrolled, menuOpen, setMenuOpen, onNavigate }) {
+  const closeMenu = () => setMenuOpen(false)
+  const goSection = (e, id) => {
+    closeMenu()
+    onNavigate(e, id)
+  }
+
   return (
-    <>
-      <div className="trust-bar">
-        <span>Clinician-guided care</span>
-        <span className="dot" />
-        <span>Discreet nationwide delivery</span>
-        <span className="dot" />
-        <span>No insurance required</span>
-        <span className="dot" />
-        <span>Free consultation pathway</span>
+    <div className={`site-top ${scrolled ? 'is-scrolled' : ''} ${menuOpen ? 'is-menu-open' : ''}`}>
+      <div className="trust-bar" aria-hidden="true">
+        <div className="trust-bar__track">
+          <span>Clinician-guided care</span>
+          <span className="dot" />
+          <span>Discreet nationwide delivery</span>
+          <span className="dot" />
+          <span>No insurance required</span>
+          <span className="dot" />
+          <span>Free consultation pathway</span>
+          <span className="dot trust-bar__dup" />
+          <span className="trust-bar__dup">Clinician-guided care</span>
+          <span className="dot trust-bar__dup" />
+          <span className="trust-bar__dup">Discreet nationwide delivery</span>
+          <span className="dot trust-bar__dup" />
+          <span className="trust-bar__dup">No insurance required</span>
+          <span className="dot trust-bar__dup" />
+          <span className="trust-bar__dup">Free consultation pathway</span>
+        </div>
       </div>
-      <header className={`header ${scrolled ? 'is-scrolled' : ''}`}>
+      <header className="header">
         <div className="container header__inner">
           <LogoMark href="#/" />
-          <nav className="nav">
+          <nav className="nav" aria-label="Primary">
             <a href="#/treatments" onClick={(e) => onNavigate(e, 'treatments')}>Treatments</a>
             <a href="#/how" onClick={(e) => onNavigate(e, 'how')}>How it works</a>
             <a href="#/quality" onClick={(e) => onNavigate(e, 'quality')}>Quality</a>
             <a href="#/faq" onClick={(e) => onNavigate(e, 'faq')}>FAQ</a>
           </nav>
           <div className="header__actions">
-            <a href="#/signin" className="btn btn--ghost">Sign in</a>
-            <a href="#/start" className="btn btn--primary">Get started</a>
+            <a href="#/signin" className="btn btn--ghost header__signin">Sign in</a>
+            <a href="#/start" className="btn btn--primary header__cta">Get started</a>
             <button
               type="button"
               className={`nav-toggle ${menuOpen ? 'is-open' : ''}`}
-              aria-label="Menu"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
             >
               <span /><span /><span />
@@ -180,17 +197,25 @@ function SiteHeader({ scrolled, menuOpen, setMenuOpen, onNavigate }) {
           </div>
         </div>
       </header>
-      {menuOpen && (
-        <div className="mobile-nav">
-          <a href="#/treatments" onClick={(e) => { setMenuOpen(false); onNavigate(e, 'treatments') }}>Treatments</a>
-          <a href="#/how" onClick={(e) => { setMenuOpen(false); onNavigate(e, 'how') }}>How it works</a>
-          <a href="#/quality" onClick={(e) => { setMenuOpen(false); onNavigate(e, 'quality') }}>Quality</a>
-          <a href="#/faq" onClick={(e) => { setMenuOpen(false); onNavigate(e, 'faq') }}>FAQ</a>
-          <a href="#/signin" className="btn btn--outline" onClick={() => setMenuOpen(false)}>Sign in</a>
-          <a href="#/start" className="btn btn--primary" onClick={() => setMenuOpen(false)}>Get started</a>
+      <div className={`mobile-nav ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
+        <button type="button" className="mobile-nav__scrim" aria-label="Close menu" onClick={closeMenu} />
+        <div className="mobile-nav__sheet">
+          <p className="mobile-nav__label">Explore</p>
+          <nav className="mobile-nav__links">
+            <a href="#/treatments" onClick={(e) => goSection(e, 'treatments')}>Treatments</a>
+            <a href="#/how" onClick={(e) => goSection(e, 'how')}>How it works</a>
+            <a href="#/quality" onClick={(e) => goSection(e, 'quality')}>Quality</a>
+            <a href="#/faq" onClick={(e) => goSection(e, 'faq')}>FAQ</a>
+            <a href="#/portal" onClick={closeMenu}>Patient Center</a>
+          </nav>
+          <div className="mobile-nav__actions">
+            <a href="#/signin" className="btn btn--outline btn--lg" onClick={closeMenu}>Sign in</a>
+            <a href="#/start" className="btn btn--primary btn--lg" onClick={closeMenu}>Get started</a>
+          </div>
+          <p className="mobile-nav__tag">Personal care. Real results.</p>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   )
 }
 
