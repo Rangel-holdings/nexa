@@ -3,6 +3,8 @@ import PageShell from './PageShell'
 import BreadcrumbJsonLd from './BreadcrumbJsonLd'
 
 export default function ProgramPage({ program }) {
+  const isPeptide = program.slug === 'peptide-therapy'
+
   return (
     <PageShell stickyMode="eligibility">
       <BreadcrumbJsonLd
@@ -17,6 +19,8 @@ export default function ProgramPage({ program }) {
           <p className="eyebrow">{program.category}</p>
           <h1>{program.title}</h1>
           <p className="lede">{program.description}</p>
+          <p className="treat-card__price">{program.price}</p>
+          {program.priceNote && <p className="treat-card__price-note">{program.priceNote}</p>}
           <p className="hero__disclosure">
             Prescription treatment is not guaranteed. Eligibility and treatment decisions are made by a licensed
             clinician. Availability varies by state and treatment.
@@ -29,6 +33,20 @@ export default function ProgramPage({ program }) {
               View Pricing
             </Link>
           </div>
+        </section>
+
+        <section className="container">
+          <ul className="check-list">
+            {program.highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          {isPeptide && (
+            <p className="quality__supplement-note">
+              Nexa Rx offers prescription therapies for eligible patients and does not sell research-use-only products.
+              Compounded medications are not FDA-approved as finished branded products.
+            </p>
+          )}
         </section>
       </main>
     </PageShell>

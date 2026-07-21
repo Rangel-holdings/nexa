@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { shopLinks, treatmentLinks } from '../lib/site-data'
 
 export default function SiteFooter() {
   return (
@@ -12,7 +13,11 @@ export default function SiteFooter() {
         </div>
         <div>
           <h4>Care</h4>
-          <Link href="/medical-weight-loss">Treatments</Link>
+          {treatmentLinks.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
           <Link href="/how-it-works">How It Works</Link>
           <Link href="/pricing">Pricing</Link>
           <Link href="/quality-and-safety">Quality &amp; Safety</Link>
@@ -24,7 +29,11 @@ export default function SiteFooter() {
           <Link href="/check-eligibility">Check Eligibility</Link>
           <Link href="/patient-login">Patient Login</Link>
           <Link href="/patient-center">Patient Center</Link>
-          <Link href="/supplements">Shop</Link>
+          {shopLinks.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
         </div>
       </div>
       <div className="container footer__bottom">

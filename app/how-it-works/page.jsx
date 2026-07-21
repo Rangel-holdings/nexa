@@ -1,21 +1,13 @@
-import PageShell from '../../components/PageShell'
-import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 import Link from 'next/link'
+import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
+import PageShell from '../../components/PageShell'
+import { careSteps } from '../../lib/site-data'
 
 export const metadata = {
   title: 'How It Works | Nexa Rx',
   description: 'See the six-step Nexa Rx care path from eligibility to pharmacy fulfillment and ongoing support.',
   alternates: { canonical: '/how-it-works' },
 }
-
-const steps = [
-  'Choose a care program — Select medical weight management, men’s hormone health, women’s hormone health, or peptide therapy.',
-  'Complete secure intake — Provide medical information inside the secure clinical portal, not on the public marketing site.',
-  'Meet a licensed clinician — The clinician reviews medical history, symptoms, labs when required, and treatment eligibility.',
-  'Receive a clinical decision — A prescription is issued only when medically appropriate. Treatment is not guaranteed.',
-  'Pharmacy fulfillment — When prescribed, medication is dispensed by the applicable licensed pharmacy and shipped where legally available.',
-  'Ongoing care — Follow-up, messaging, refill support, and lab cadence are included by program.',
-]
 
 export default function Page() {
   return (
@@ -32,10 +24,11 @@ export default function Page() {
         </section>
         <section className="container">
           <div className="steps">
-            {steps.map((text, idx) => (
-              <article key={text} className="step">
-                <span className="step__n">Step {String(idx + 1).padStart(2, '0')}</span>
-                <p>{text}</p>
+            {careSteps.map((step) => (
+              <article key={step.n} className="step">
+                <span className="step__n">Step {step.n}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
               </article>
             ))}
           </div>

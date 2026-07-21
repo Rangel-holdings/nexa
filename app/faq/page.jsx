@@ -1,5 +1,5 @@
 import PageShell from '../../components/PageShell'
-import FaqList from '../../components/FaqList'
+import FaqAccordion from '../../components/FaqAccordion'
 import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 
 export const metadata = {
@@ -13,7 +13,7 @@ export default function Page() {
     <PageShell stickyMode="eligibility">
       <BreadcrumbJsonLd items={[{ name: 'Home', path: '/' }, { name: 'FAQ', path: '/faq' }]} />
       <main>
-        <FaqList />
+        <FaqAccordion />
       </main>
     </PageShell>
   )
