@@ -3,7 +3,7 @@ import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 import PageShell from '../../components/PageShell'
 import SiteImage from '../../components/SiteImage'
 import { careSteps } from '../../lib/site-data'
-import { media } from '../../lib/media'
+import { media, howItWorksStepImages } from '../../lib/media'
 
 export const metadata = {
   title: 'How It Works | Nexa Rx',
@@ -30,25 +30,46 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          <div className="program-split__media">
+          <div className="program-split__media" data-reveal="right">
             <SiteImage
-              src={media.careJourney.src}
-              alt={media.careJourney.alt}
+              src={media.howItWorksHero.src}
+              alt={media.howItWorksHero.alt}
               fill
               priority
-              sizes="(max-width: 768px) 100vw, 520px"
+              quality={74}
+              sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 520px"
             />
           </div>
         </section>
-        <section className="container" style={{ marginTop: '1.5rem' }}>
-          <div className="steps">
-            {careSteps.map((step) => (
-              <article key={step.n} className="step">
-                <span className="step__n">Step {step.n}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </article>
-            ))}
+
+        <section className="container how-steps-section">
+          <div className="steps how-steps">
+            {careSteps.map((step, index) => {
+              const image = howItWorksStepImages[index]
+              return (
+                <article
+                  key={step.n}
+                  className="step how-step-card"
+                  data-reveal="up"
+                  style={{ '--delay': `${index * 70}ms` }}
+                >
+                  <div className="how-step-card__media">
+                    <SiteImage
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      quality={68}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 180px"
+                    />
+                  </div>
+                  <div className="how-step-card__body">
+                    <span className="step__n">Step {step.n}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </section>
       </main>
