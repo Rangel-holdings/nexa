@@ -155,19 +155,30 @@ export default function HomePage() {
         </section>
 
         <section className="supplements" id="shop">
-          <div className="container supplements__inner">
-            <p className="eyebrow">NON-PRESCRIPTION SUPPORT</p>
-            <h2>Support your health between visits.</h2>
-            <p className="lede">
-              Shop a focused collection of dietary supplements for everyday wellness. No prescription required.
-            </p>
-            <Link href="/supplements" className="btn btn--primary btn--lg">
-              Shop Supplements
-            </Link>
-            <p className="supplements__disclaimer">
-              These statements have not been evaluated by the Food and Drug Administration. This product is not intended
-              to diagnose, treat, cure, or prevent any disease.
-            </p>
+          <div className="container supplements__grid">
+            <div className="supplements__media">
+              <SiteImage
+                src={media.heroProduct.src}
+                alt={media.heroProduct.alt}
+                width={media.heroProduct.width}
+                height={media.heroProduct.height}
+                sizes="(max-width: 768px) 100vw, 480px"
+              />
+            </div>
+            <div className="supplements__inner">
+              <p className="eyebrow">NON-PRESCRIPTION SUPPORT</p>
+              <h2>Support your health between visits.</h2>
+              <p className="lede">
+                Shop a focused collection of dietary supplements for everyday wellness. No prescription required.
+              </p>
+              <Link href="/supplements" className="btn btn--primary btn--lg">
+                Shop Supplements
+              </Link>
+              <p className="supplements__disclaimer">
+                These statements have not been evaluated by the Food and Drug Administration. This product is not intended
+                to diagnose, treat, cure, or prevent any disease.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -287,10 +298,10 @@ export default function HomePage() {
               </p>
               <div className="brand-actions">
                 <Link href="/check-eligibility" className="brand-action">
-                  <span>→</span> Begin your care plan
+                  <span>→</span> Check Eligibility
                 </Link>
-                <Link href="/how-it-works" className="brand-action">
-                  <span>→</span> See how it works
+                <Link href="/#treatments" className="brand-action">
+                  <span>→</span> View Treatments
                 </Link>
               </div>
             </div>
@@ -320,8 +331,8 @@ export default function HomePage() {
               <Link href="/check-eligibility" className="btn btn--primary btn--lg">
                 Check Eligibility
               </Link>
-              <Link href="/how-it-works" className="btn btn--on-dark btn--lg">
-                How It Works
+              <Link href="/#treatments" className="btn btn--on-dark btn--lg">
+                View Treatments
               </Link>
             </div>
           </div>

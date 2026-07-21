@@ -4,11 +4,17 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { shopLinks, treatmentLinks } from '../lib/site-data'
 
-const topLinks = [
+const midLinks = [
   { href: '/how-it-works', label: 'How It Works' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/quality-and-safety', label: 'Quality & Safety' },
-  { href: '/faq', label: 'FAQ' },
+]
+
+const endLinks = [{ href: '/faq', label: 'FAQ' }]
+
+const mobileExploreLinks = [
+  ...midLinks,
+  ...endLinks,
   { href: '/medical-team', label: 'Medical Team' },
 ]
 
@@ -36,13 +42,13 @@ export default function SiteHeader() {
     <div className={`site-top is-scrolled ${menuOpen ? 'is-menu-open' : ''}`}>
       <div className="trust-bar" aria-hidden="true">
         <div className="trust-bar__track">
-          <span>Licensed clinical care</span>
+          <span>LICENSED CLINICAL CARE</span>
           <span className="dot" />
-          <span>Clear pricing</span>
+          <span>CLEAR PRICING</span>
           <span className="dot" />
-          <span>No insurance required</span>
+          <span>NO INSURANCE REQUIRED</span>
           <span className="dot" />
-          <span>Discreet delivery</span>
+          <span>DISCREET DELIVERY</span>
         </div>
       </div>
 
@@ -56,12 +62,17 @@ export default function SiteHeader() {
 
           <nav className="nav" aria-label="Primary">
             <NavDropdown label="Treatments" items={treatmentLinks} />
-            {topLinks.map((item) => (
+            {midLinks.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
               </Link>
             ))}
             <NavDropdown label="Shop" items={shopLinks} />
+            {endLinks.map((item) => (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="header__actions">
@@ -107,7 +118,7 @@ export default function SiteHeader() {
           </nav>
           <p className="mobile-nav__label">Explore</p>
           <nav className="mobile-nav__links">
-            {topLinks.map((item) => (
+            {mobileExploreLinks.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
                 {item.label}
               </Link>

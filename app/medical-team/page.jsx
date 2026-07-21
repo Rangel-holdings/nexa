@@ -1,5 +1,8 @@
+import Link from 'next/link'
 import PageShell from '../../components/PageShell'
 import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
+import SiteImage from '../../components/SiteImage'
+import { media } from '../../lib/media'
 
 export const metadata = {
   title: 'Medical Team | Nexa Rx',
@@ -12,21 +15,41 @@ export default function Page() {
     <PageShell stickyMode="eligibility">
       <BreadcrumbJsonLd items={[{ name: 'Home', path: '/' }, { name: 'Medical Team', path: '/medical-team' }]} />
       <main className="pricing-page">
-        <section className="container pricing-page__hero">
-          <p className="eyebrow">Medical Team</p>
-          <h1>Licensed clinicians, patient-first standards.</h1>
-          <p className="lede">
-            Nexa Rx connects eligible adults with licensed clinicians who evaluate symptoms, history, and labs when
-            required before making treatment decisions.
-          </p>
+        <section className="container program-split">
+          <div className="program-split__copy">
+            <p className="eyebrow">Medical Team</p>
+            <h1>Licensed clinicians, patient-first standards.</h1>
+            <p className="lede">
+              Nexa Rx connects eligible adults with licensed clinicians who evaluate symptoms, history, and labs when
+              required before making treatment decisions.
+            </p>
+            <div className="hero__cta">
+              <Link className="btn btn--primary btn--lg" href="/check-eligibility">
+                Check Eligibility
+              </Link>
+              <Link className="btn btn--outline btn--lg" href="/how-it-works">
+                View Details
+              </Link>
+            </div>
+          </div>
+          <div className="program-split__media">
+            <SiteImage
+              src={media.heroLifestyle.src}
+              alt={media.heroLifestyle.alt}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 520px"
+            />
+          </div>
         </section>
-        <section className="container proof__metrics">
+
+        <section className="container proof__metrics" style={{ marginTop: '2rem' }}>
           <div>
             <strong>Clinical leadership</strong>
-            <span>Board-certified physician oversight and treatment protocols.</span>
+            <span>Licensed clinician oversight for evaluation and care decisions.</span>
           </div>
           <div>
-            <strong>Licensure & state rules</strong>
+            <strong>Licensure &amp; state rules</strong>
             <span>Care availability varies by clinician licensure and state law.</span>
           </div>
           <div>

@@ -18,29 +18,31 @@ export default function ProgramPage({ program }) {
         ]}
       />
       <main className="pricing-page">
-        <section className="container pricing-page__hero">
-          <p className="eyebrow">{program.category}</p>
-          <h1>{program.title}</h1>
-          <p className="lede">{program.description}</p>
-          <p className="treat-card__price">{program.price}</p>
-          {program.priceNote && <p className="treat-card__price-note">{program.priceNote}</p>}
+        <section className="container program-split">
+          <div className="program-split__copy">
+            <p className="eyebrow">{program.category}</p>
+            <h1>{program.title}</h1>
+            <p className="lede">{program.description}</p>
+            <p className="treat-card__price">{program.price}</p>
+            {program.priceNote && <p className="treat-card__price-note">{program.priceNote}</p>}
+            <p className="hero__disclosure">
+              Prescription treatment is not guaranteed. Eligibility and treatment decisions are made by a licensed
+              clinician. Availability varies by state and treatment.
+            </p>
+            <div className="hero__cta">
+              <Link className="btn btn--primary btn--lg" href="/check-eligibility">
+                Check Eligibility
+              </Link>
+              <Link className="btn btn--outline btn--lg" href="/#treatments">
+                View Treatments
+              </Link>
+            </div>
+          </div>
           {image && (
-            <div className="program-hero-media">
-              <SiteImage src={image.src} alt={image.alt} fill priority sizes="(max-width: 768px) 100vw, 720px" />
+            <div className="program-split__media">
+              <SiteImage src={image.src} alt={image.alt} fill priority sizes="(max-width: 768px) 100vw, 520px" />
             </div>
           )}
-          <p className="hero__disclosure">
-            Prescription treatment is not guaranteed. Eligibility and treatment decisions are made by a licensed
-            clinician. Availability varies by state and treatment.
-          </p>
-          <div className="hero__cta">
-            <Link className="btn btn--primary btn--lg" href="/check-eligibility">
-              Check Eligibility
-            </Link>
-            <Link className="btn btn--outline btn--lg" href="/#treatments">
-              View Treatments
-            </Link>
-          </div>
         </section>
 
         <section className="container">
@@ -50,10 +52,16 @@ export default function ProgramPage({ program }) {
             ))}
           </ul>
           {isPeptide && (
-            <p className="quality__supplement-note">
-              Nexa Rx offers prescription therapies for eligible patients and does not sell research-use-only products.
-              Compounded medications are not FDA-approved as finished branded products.
-            </p>
+            <div className="quality__supplement-note">
+              <p>
+                Nexa Rx offers prescription therapies for eligible patients and does not sell research-use-only products.
+                Compounded medications are not FDA-approved as finished branded products.
+              </p>
+              <p style={{ marginTop: '0.75rem' }}>
+                Depending on the prescribed therapy, fulfillment may occur through a 503A compounding pharmacy or a 503B
+                outsourcing facility. Your clinician will explain the applicable channel before enrollment.
+              </p>
+            </div>
           )}
         </section>
       </main>

@@ -1229,15 +1229,35 @@ ul { list-style: none; }
     radial-gradient(ellipse at 30% 50%, rgba(77, 170, 154, 0.10), transparent 55%),
     var(--sand);
   padding: 4.5rem 0;
-  text-align: center;
+}
+
+.supplements__grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.supplements__media {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #ECEAE6;
+  border: 1px solid var(--line);
+}
+
+.supplements__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
 }
 
 .supplements__inner {
   max-width: 640px;
-  margin-inline: auto;
   display: grid;
   gap: 1.25rem;
-  justify-items: center;
+  justify-items: start;
+  text-align: left;
 }
 
 .supplements h2 {
@@ -1261,6 +1281,13 @@ ul { list-style: none; }
   font-weight: 500;
   border-top: 1px solid var(--line);
   padding-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .supplements__grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 3rem;
+  }
 }
 
 /* ── Quality & Safety supplement note ───────────────────────────────────── */
@@ -1697,6 +1724,93 @@ ul { list-style: none; }
   background: linear-gradient(180deg, var(--cloud) 0%, var(--sand) 100%);
 }
 
+.program-split {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.program-split__copy h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--navy);
+  margin: 0.35rem 0 0.85rem;
+}
+
+.program-split__media {
+  position: relative;
+  min-height: 280px;
+  aspect-ratio: 4 / 3;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: var(--sand);
+  border: 1px solid var(--line);
+}
+
+.program-split__media img {
+  object-fit: cover;
+}
+
+.program-split--compact .program-split__media {
+  min-height: 220px;
+}
+
+@media (min-width: 900px) {
+  .program-split {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3rem;
+  }
+}
+
+.quality-visual-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.quality-visual-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 34, 0.04);
+}
+
+.quality-visual-card__media {
+  position: relative;
+  height: 180px;
+  background: var(--sand);
+}
+
+.quality-visual-card__media img {
+  object-fit: cover;
+}
+
+.quality-visual-card__body {
+  padding: 1.15rem 1.25rem 1.35rem;
+}
+
+.quality-visual-card__body h2 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.quality-visual-card__body p {
+  color: rgba(15, 23, 34, 0.68);
+  font-size: 0.92rem;
+}
+
+@media (min-width: 768px) {
+  .quality-visual-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .pricing-page__hero {
   text-align: center;
   margin-bottom: 3.5rem;
@@ -1722,10 +1836,37 @@ ul { list-style: none; }
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 2.25rem 2rem;
+  padding: 0;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.pricing-card__media {
+  position: relative;
+  height: 180px;
+  background: var(--sand);
+}
+
+.pricing-card__media img {
+  object-fit: cover;
+}
+
+.pricing-card__header,
+.pricing-card__row,
+.pricing-card__footer {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.pricing-card__header {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.pricing-card__row:first-of-type {
+  margin-top: 0.5rem;
 }
 
 .pricing-card__header {
@@ -1754,7 +1895,7 @@ ul { list-style: none; }
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  padding: 0.95rem 0;
+  padding: 0.85rem 2rem;
   border-bottom: 1px solid var(--line);
   font-size: 0.9rem;
 }
@@ -1787,13 +1928,16 @@ ul { list-style: none; }
 
 .pricing-card__row.limitation-row {
   background: rgba(15, 23, 34, 0.02);
-  padding: 1rem;
+  margin: 0.75rem 1.25rem 0;
   border-radius: 0.75rem;
-  margin-top: 0.75rem;
+  border-bottom: none;
 }
 
 .pricing-card__footer {
-  margin-top: 2rem;
+  margin-top: auto;
+  padding: 1.25rem 2rem 1.75rem;
+  display: grid;
+  gap: 0.65rem;
 }
 
 .pricing-card__footer .btn {
@@ -1808,11 +1952,8 @@ ul { list-style: none; }
 
 @media (min-width: 1200px) {
   .pricing-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
-  }
-  .pricing-card {
-    padding: 1.85rem 1.5rem;
   }
 }
 

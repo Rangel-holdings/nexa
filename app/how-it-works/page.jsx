@@ -16,25 +16,31 @@ export default function Page() {
     <PageShell stickyMode="eligibility">
       <BreadcrumbJsonLd items={[{ name: 'Home', path: '/' }, { name: 'How It Works', path: '/how-it-works' }]} />
       <main className="pricing-page">
-        <section className="container pricing-page__hero">
-          <p className="eyebrow">How It Works</p>
-          <h1>Your care path, step by step.</h1>
-          <p className="lede">Transparent process. Clinical decisions made by licensed clinicians.</p>
-          <div className="how__visual" style={{ marginTop: '1.5rem' }}>
+        <section className="container program-split">
+          <div className="program-split__copy">
+            <p className="eyebrow">How It Works</p>
+            <h1>Your care path, step by step.</h1>
+            <p className="lede">Transparent process. Clinical decisions made by licensed clinicians.</p>
+            <div className="hero__cta">
+              <Link href="/check-eligibility" className="btn btn--primary btn--lg">
+                Check Eligibility
+              </Link>
+              <Link href="/#treatments" className="btn btn--outline btn--lg">
+                View Treatments
+              </Link>
+            </div>
+          </div>
+          <div className="program-split__media">
             <SiteImage
               src={media.careJourney.src}
               alt={media.careJourney.alt}
-              width={media.careJourney.width}
-              height={media.careJourney.height}
+              fill
               priority
-              sizes="(max-width: 880px) 100vw, 880px"
+              sizes="(max-width: 768px) 100vw, 520px"
             />
           </div>
-          <Link href="/check-eligibility" className="btn btn--primary" style={{ marginTop: '1.25rem' }}>
-            Check Eligibility
-          </Link>
         </section>
-        <section className="container">
+        <section className="container" style={{ marginTop: '1.5rem' }}>
           <div className="steps">
             {careSteps.map((step) => (
               <article key={step.n} className="step">

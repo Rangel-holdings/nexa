@@ -9,7 +9,7 @@ export default function SiteFooter() {
           <p className="logo__word">
             Nexa <span className="logo__rx">Rx</span>
           </p>
-          <p className="footer__tag">Licensed clinical care. Clear pricing.</p>
+          <p className="footer__tag">Licensed clinical care. Clear pricing. Qualified U.S. pharmacy fulfillment.</p>
         </div>
         <div>
           <h4>Care</h4>
