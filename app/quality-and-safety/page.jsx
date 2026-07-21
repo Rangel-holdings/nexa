@@ -33,49 +33,52 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          <div className="program-split__media">
+          <div className="program-split__media" data-reveal="right">
             <SiteImage
-              src={media.packaging.src}
-              alt={media.packaging.alt}
+              src={media.qualityHero.src}
+              alt={media.qualityHero.alt}
               fill
               priority
-              sizes="(max-width: 768px) 100vw, 520px"
+              quality={74}
+              sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 520px"
             />
           </div>
         </section>
 
         <section className="container quality-visual-grid">
-          <div className="quality-visual-card">
+          <article className="quality-visual-card" data-reveal="up" style={{ '--delay': '0ms' }}>
             <div className="quality-visual-card__media">
               <SiteImage
-                src={media.careJourney.src}
-                alt={media.careJourney.alt}
+                src={media.qualitySecurePortal.src}
+                alt={media.qualitySecurePortal.alt}
                 fill
-                sizes="(max-width: 768px) 100vw, 360px"
+                quality={70}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
               />
             </div>
             <div className="quality-visual-card__body">
               <h2>Secure clinical pathway</h2>
               <p>Medical intake stays in the clinical portal — not on the public marketing website.</p>
             </div>
-          </div>
-          <div className="quality-visual-card">
+          </article>
+          <article className="quality-visual-card" data-reveal="up" style={{ '--delay': '80ms' }}>
             <div className="quality-visual-card__media">
               <SiteImage
-                src={media.heroProduct.src}
-                alt={media.heroProduct.alt}
+                src={media.qualityPharmacy.src}
+                alt={media.qualityPharmacy.alt}
                 fill
-                sizes="(max-width: 768px) 100vw, 360px"
+                quality={70}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
               />
             </div>
             <div className="quality-visual-card__body">
               <h2>Qualified U.S. fulfillment</h2>
               <p>Prescriptions are sent to appropriately licensed U.S. pharmacies when treatment is prescribed.</p>
             </div>
-          </div>
+          </article>
         </section>
 
-        <section className="container">
+        <section className="container" data-reveal="up">
           <ul className="check-list">
             <li>Prescriptions are sent to appropriately licensed U.S. pharmacies.</li>
             <li>Compounded medications are not FDA-approved as finished branded products.</li>

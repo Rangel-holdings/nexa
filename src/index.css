@@ -2027,12 +2027,22 @@ ul { list-style: none; }
 
 .quality-visual-card__media {
   position: relative;
-  height: 180px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  min-height: 180px;
   background: var(--sand);
+  overflow: hidden;
 }
 
-.quality-visual-card__media img {
+.quality-visual-card__media img,
+.quality-visual-card__media .site-image {
   object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.quality-visual-card:hover .quality-visual-card__media img,
+.quality-visual-card:hover .quality-visual-card__media .site-image {
+  transform: scale(1.05);
 }
 
 .quality-visual-card__body {
