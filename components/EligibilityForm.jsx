@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { programs } from '../lib/site-data'
+import { programImages } from '../lib/media'
 
 export default function EligibilityForm() {
   const router = useRouter()
@@ -29,7 +30,36 @@ export default function EligibilityForm() {
     <section className="container pricing-page__hero">
       <p className="eyebrow">Check Eligibility</p>
       <h1>Start with a quick eligibility check.</h1>
-      <p className="lede">Select your program, state, and contact details. Medical intake happens in the secure clinical portal.</p>
+      <p className="lede">
+        Select your program, state, and contact details. Medical intake happens in the secure clinical portal.
+      </p>
+
+      <div className="flow-treats" style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
+        {programs.map((program) => {
+          const image = programImages[program.slug]
+          const selected = form.program === program.title
+          return (
+            <button
+              key={program.slug}
+              type="button"
+              className={`flow-treat ${selected ? 'is-active' : ''}`}
+              onClick={() => setForm({ ...form, program: program.title })}
+            >
+              <span
+                className="flow-treat__img"
+                style={image ? { backgroundImage: `url(${image.src})` } : undefined}
+                aria-hidden="true"
+              />
+              <span className="flow-treat__body">
+                <span className="pill">{program.category}</span>
+                <strong>{program.navLabel}</strong>
+                <em>{program.price}</em>
+              </span>
+            </button>
+          )
+        })}
+      </div>
+
       <form className="flow-form" onSubmit={submit} style={{ marginTop: '1rem', textAlign: 'left' }}>
         <label>
           Care program
@@ -69,7 +99,7 @@ export default function EligibilityForm() {
         </label>
         {error && <p className="flow-error">{error}</p>}
         <button className="btn btn--primary btn--lg" type="submit">
-          Submit for clinical review
+          Check Eligibility
         </button>
       </form>
       <p className="hero__stats-note" style={{ marginTop: '1rem' }}>

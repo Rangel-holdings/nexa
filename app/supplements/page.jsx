@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import PageShell from '../../components/PageShell'
 import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
+import SiteImage from '../../components/SiteImage'
 import { supplements } from '../../lib/site-data'
+import { media } from '../../lib/media'
 
 export const metadata = {
   title: 'Supplements Shop | Nexa Rx',
@@ -17,11 +19,30 @@ export default function Page() {
         <section className="container pricing-page__hero">
           <p className="eyebrow">NON-PRESCRIPTION SUPPORT</p>
           <h1>Shop Supplements</h1>
-          <p className="lede">Dietary supplements are sold separately from medical treatment and do not affect prescribing decisions.</p>
+          <p className="lede">
+            Dietary supplements are sold separately from medical treatment and do not affect prescribing decisions.
+          </p>
+          <div className="program-hero-media">
+            <SiteImage
+              src={media.heroProduct.src}
+              alt={media.heroProduct.alt}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 720px"
+            />
+          </div>
         </section>
         <section className="container treat-grid">
           {supplements.map((item) => (
             <article key={item.slug} className="treat-card">
+              <div className="treat-card__media">
+                <SiteImage
+                  src={media.packaging.src}
+                  alt={`${item.name} packaging`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 280px"
+                />
+              </div>
               <div className="treat-card__body">
                 <span className="pill">Dietary Supplement</span>
                 <h3>{item.name}</h3>

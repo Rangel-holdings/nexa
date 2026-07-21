@@ -1,5 +1,21 @@
+import { Manrope, Cormorant_Garamond } from 'next/font/google'
 import '../src/index.css'
 import { siteUrl } from '../lib/site-data'
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body-face',
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-display-face',
+  weight: ['500', '600'],
+  style: ['normal', 'italic'],
+})
 
 const isPreview = process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production'
 
@@ -15,8 +31,29 @@ export const metadata = {
     url: siteUrl,
     siteName: 'Nexa Rx',
     type: 'website',
+    images: [
+      {
+        url: '/images/hero-lifestyle.png',
+        width: 1600,
+        height: 1200,
+        alt: 'Nexa Rx telehealth care',
+      },
+    ],
   },
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/apple-touch-icon.svg',
+  },
+  authors: [{ name: 'Ombaye' }],
+  creator: 'Ombaye',
+  publisher: 'Nexa Rx',
   robots: isPreview ? { index: false, follow: true } : { index: true, follow: true },
+}
+
+export const viewport = {
+  themeColor: '#0F1722',
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({ children }) {
@@ -30,7 +67,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${manrope.variable} ${cormorant.variable}`}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
         {children}

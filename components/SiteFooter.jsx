@@ -38,6 +38,7 @@ export default function SiteFooter() {
       </div>
       <div className="container footer__bottom">
         <p>&copy; {new Date().getFullYear()} Nexa Rx. All rights reserved.</p>
+        <p className="footer__credit">Built by Ombaye for Rangel Holdings.</p>
         <p className="footer__legal">
           Nexa Rx is a telehealth platform connecting eligible patients with licensed clinicians and qualified U.S.
           pharmacy partners. Compounded medications are not FDA-approved as finished branded products. Prescription

@@ -102,6 +102,13 @@ src/index.css  Global styles
 
 Navy, cream, and teal palette with a premium medical-care feel—care platform first, not a drug catalog.
 
+## Performance
+
+- Next.js Image Optimization (AVIF/WebP) for all marketing imagery
+- Long-lived immutable cache headers for `/images`, `/brand`, and `/_next/static`
+- Self-hosted fonts via `next/font` (Cormorant Garamond + Manrope)
+- Priority loading only for LCP hero imagery
+
 ## Author
 
-Maintained by **Ombaye** for Rangel Holdings.
+Built and maintained by **Ombaye** for Rangel Holdings.

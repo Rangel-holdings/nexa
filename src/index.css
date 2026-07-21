@@ -8,8 +8,8 @@
   --slate: #6B7280;
   --line: rgba(15, 23, 34, 0.1);
   --shadow: 0 18px 50px rgba(15, 23, 34, 0.08);
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-display: var(--font-display-face), 'Cormorant Garamond', Georgia, serif;
+  --font-body: var(--font-body-face), 'Manrope', system-ui, sans-serif;
   --radius: 1.25rem;
   --max: 1120px;
 }
@@ -469,10 +469,15 @@ ul { list-style: none; }
 }
 
 .hero-card__media {
+  position: relative;
   height: 260px;
-  background-size: cover;
-  background-position: center top;
   background-color: var(--sand);
+  overflow: hidden;
+}
+
+.hero-card__media img {
+  object-fit: cover;
+  object-position: center top;
 }
 
 .hero-card__body { padding: 1.25rem 1.35rem 1.45rem; }
@@ -598,10 +603,29 @@ ul { list-style: none; }
 }
 
 .treat-card__media {
+  position: relative;
   height: 160px;
-  background-size: cover;
-  background-position: center;
   background-color: var(--sand);
+  overflow: hidden;
+}
+
+.treat-card__media img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.program-hero-media {
+  position: relative;
+  margin: 1.5rem 0 0;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--sand);
+  max-width: 720px;
+}
+
+.program-hero-media img {
+  object-fit: cover;
 }
 
 .treat-card__body { padding: 1.15rem 1.2rem 1.3rem; }
@@ -968,6 +992,12 @@ ul { list-style: none; }
   gap: 0.75rem;
 }
 
+.footer__credit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(242, 244, 247, 0.72);
+}
+
 .footer__legal {
   font-size: 0.72rem;
   line-height: 1.5;
@@ -1265,6 +1295,7 @@ ul { list-style: none; }
 }
 
 .how__visual {
+  position: relative;
   margin: 2rem auto 0;
   max-width: 880px;
   border-radius: 1.5rem;
@@ -1278,6 +1309,18 @@ ul { list-style: none; }
   height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+.brand-band__visual {
+  position: relative;
+}
+
+.brand-band__visual img,
+.start-now__media img,
+.stat-card--brand img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Start flow */
@@ -1497,14 +1540,21 @@ ul { list-style: none; }
 
 .auth__visual {
   display: none;
-  background-size: cover;
-  background-position: center;
   position: relative;
+  overflow: hidden;
+  background-color: var(--navy);
+  min-height: 100vh;
+}
+
+.auth__visual > img {
+  object-fit: cover;
+  object-position: center;
 }
 
 .auth__overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(160deg, rgba(11, 18, 32, 0.72), rgba(15, 23, 34, 0.88));
   color: #fff;
   padding: 2.5rem;

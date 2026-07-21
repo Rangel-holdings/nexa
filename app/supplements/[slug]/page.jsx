@@ -2,7 +2,9 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import PageShell from '../../../components/PageShell'
 import BreadcrumbJsonLd from '../../../components/BreadcrumbJsonLd'
+import SiteImage from '../../../components/SiteImage'
 import { supplements, siteUrl } from '../../../lib/site-data'
+import { media } from '../../../lib/media'
 
 export function generateStaticParams() {
   return supplements.map((item) => ({ slug: item.slug }))
@@ -28,6 +30,7 @@ export default function Page({ params }) {
     name: product.name,
     category: product.category,
     description: product.description,
+    image: `${siteUrl}${media.packaging.src}`,
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'USD',
@@ -53,6 +56,15 @@ export default function Page({ params }) {
           <p className="eyebrow">Dietary Supplement</p>
           <h1>{product.name}</h1>
           <p className="lede">{product.description}</p>
+          <div className="program-hero-media">
+            <SiteImage
+              src={media.packaging.src}
+              alt={`${product.name} packaging`}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 720px"
+            />
+          </div>
           <p className="supplements__disclaimer">
             These statements have not been evaluated by the Food and Drug Administration. This product is not intended
             to diagnose, treat, cure, or prevent any disease.
@@ -75,6 +87,14 @@ export default function Page({ params }) {
             <div className="pricing-card__row">
               <span className="label">Supplement facts</span>
               <span className="value">{product.facts.join(' · ')}</span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Cancellation method</span>
+              <span className="value">Cancel anytime in Order Support or before the next renewal date.</span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Purchase options</span>
+              <span className="value">One-time purchase or Subscribe &amp; Save available before payment.</span>
             </div>
             <div className="pricing-card__row">
               <span className="label">Warnings and allergens</span>

@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import PageShell from '../components/PageShell'
 import FaqAccordion from '../components/FaqAccordion'
+import SiteImage from '../components/SiteImage'
 import { careSteps, programs } from '../lib/site-data'
+import { media, programImages } from '../lib/media'
 
 export default function HomePage() {
   return (
@@ -23,7 +25,7 @@ export default function HomePage() {
                 <Link href="/check-eligibility" className="btn btn--primary btn--lg">
                   Check Eligibility
                 </Link>
-                <Link href="/medical-weight-loss" className="btn btn--outline btn--lg">
+                <Link href="/#treatments" className="btn btn--outline btn--lg">
                   View Treatments
                 </Link>
               </div>
@@ -37,11 +39,11 @@ export default function HomePage() {
                   <span>Eligibility check</span>
                 </li>
                 <li>
-                  <strong>Within 24h*</strong>
+                  <strong>Within 24 hours*</strong>
                   <span>Typical clinical review</span>
                 </li>
                 <li>
-                  <strong>No insurance</strong>
+                  <strong>No insurance required</strong>
                   <span>Simple self-pay care.</span>
                 </li>
               </ul>
@@ -50,6 +52,15 @@ export default function HomePage() {
 
             <div className="hero__visual">
               <article className="hero-card">
+                <div className="hero-card__media">
+                  <SiteImage
+                    src={media.weightLoss.src}
+                    alt={media.weightLoss.alt}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 480px"
+                  />
+                </div>
                 <div className="hero-card__body">
                   <span className="pill">Featured Program</span>
                   <p className="hero-card__cat">Medical Weight Loss</p>
@@ -107,8 +118,19 @@ export default function HomePage() {
             <div className="treat-grid">
               {programs.map((program) => {
                 const isPeptide = program.slug === 'peptide-therapy'
+                const image = programImages[program.slug]
                 return (
                   <article key={program.slug} className="treat-card">
+                    {image && (
+                      <div className="treat-card__media">
+                        <SiteImage
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 280px"
+                        />
+                      </div>
+                    )}
                     <div className="treat-card__body">
                       <span className="pill">{isPeptide ? 'PRESCRIPTION THERAPY' : 'Care Program'}</span>
                       <p className="treat-card__cat">{program.category}</p>
@@ -182,6 +204,15 @@ export default function HomePage() {
                 <strong>U.S.</strong>
                 <span>Licensed pharmacy partners</span>
               </div>
+              <div className="stat-card stat-card--brand">
+                <SiteImage
+                  src={media.packaging.src}
+                  alt={media.packaging.alt}
+                  width={media.packaging.width}
+                  height={media.packaging.height}
+                  sizes="(max-width: 768px) 100vw, 240px"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -195,6 +226,15 @@ export default function HomePage() {
               <Link href="/check-eligibility" className="btn btn--primary">
                 Check Eligibility
               </Link>
+            </div>
+            <div className="how__visual">
+              <SiteImage
+                src={media.careJourney.src}
+                alt={media.careJourney.alt}
+                width={media.careJourney.width}
+                height={media.careJourney.height}
+                sizes="(max-width: 880px) 100vw, 880px"
+              />
             </div>
             <div className="steps">
               {careSteps.map((step) => (
@@ -210,6 +250,15 @@ export default function HomePage() {
 
         <section className="start-now">
           <div className="container start-now__grid">
+            <div className="start-now__media">
+              <SiteImage
+                src={media.careStarts.src}
+                alt={media.careStarts.alt}
+                width={media.careStarts.width}
+                height={media.careStarts.height}
+                sizes="(max-width: 768px) 100vw, 520px"
+              />
+            </div>
             <div className="start-now__copy">
               <h2>
                 Your care.<br />
@@ -223,6 +272,36 @@ export default function HomePage() {
               <Link href="/check-eligibility" className="btn btn--primary btn--lg btn--square">
                 Check Eligibility <span aria-hidden="true">→</span>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="brand-band">
+          <div className="container brand-band__grid">
+            <div>
+              <p className="eyebrow eyebrow--teal">Care that connects.</p>
+              <h2>Built for modern clinical wellness.</h2>
+              <p>
+                Clear pricing, licensed clinicians, and discreet pharmacy fulfillment—so you can focus on your health
+                goals with confidence.
+              </p>
+              <div className="brand-actions">
+                <Link href="/check-eligibility" className="brand-action">
+                  <span>→</span> Begin your care plan
+                </Link>
+                <Link href="/how-it-works" className="brand-action">
+                  <span>→</span> See how it works
+                </Link>
+              </div>
+            </div>
+            <div className="brand-band__visual">
+              <SiteImage
+                src={media.heroLifestyle.src}
+                alt={media.heroLifestyle.alt}
+                width={media.heroLifestyle.width}
+                height={media.heroLifestyle.height}
+                sizes="(max-width: 768px) 100vw, 520px"
+              />
             </div>
           </div>
         </section>

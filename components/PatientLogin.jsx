@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import SiteImage from './SiteImage'
+import { media } from '../lib/media'
 
 export default function PatientLogin() {
   const router = useRouter()
@@ -22,6 +24,22 @@ export default function PatientLogin() {
 
   return (
     <div className="auth">
+      <div className="auth__visual">
+        <SiteImage
+          src={media.heroLifestyle.src}
+          alt={media.heroLifestyle.alt}
+          fill
+          priority
+          sizes="(max-width: 767px) 0px, 50vw"
+        />
+        <div className="auth__overlay">
+          <p className="logo__word logo--on-dark">
+            Nexa <span className="logo__rx">Rx</span>
+          </p>
+          <h1>Your care, in one place.</h1>
+          <p>Licensed clinical care with clear pricing and discreet delivery.</p>
+        </div>
+      </div>
       <div className="auth__panel">
         <Link href="/" className="auth__back">
           ← Back to Nexa Rx

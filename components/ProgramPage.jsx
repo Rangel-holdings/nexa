@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import PageShell from './PageShell'
 import BreadcrumbJsonLd from './BreadcrumbJsonLd'
+import SiteImage from './SiteImage'
+import { programImages } from '../lib/media'
 
 export default function ProgramPage({ program }) {
   const isPeptide = program.slug === 'peptide-therapy'
+  const image = programImages[program.slug]
 
   return (
     <PageShell stickyMode="eligibility">
@@ -21,6 +24,11 @@ export default function ProgramPage({ program }) {
           <p className="lede">{program.description}</p>
           <p className="treat-card__price">{program.price}</p>
           {program.priceNote && <p className="treat-card__price-note">{program.priceNote}</p>}
+          {image && (
+            <div className="program-hero-media">
+              <SiteImage src={image.src} alt={image.alt} fill priority sizes="(max-width: 768px) 100vw, 720px" />
+            </div>
+          )}
           <p className="hero__disclosure">
             Prescription treatment is not guaranteed. Eligibility and treatment decisions are made by a licensed
             clinician. Availability varies by state and treatment.
@@ -29,8 +37,8 @@ export default function ProgramPage({ program }) {
             <Link className="btn btn--primary btn--lg" href="/check-eligibility">
               Check Eligibility
             </Link>
-            <Link className="btn btn--outline btn--lg" href="/pricing">
-              View Pricing
+            <Link className="btn btn--outline btn--lg" href="/#treatments">
+              View Treatments
             </Link>
           </div>
         </section>
