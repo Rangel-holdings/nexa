@@ -1,49 +1,107 @@
 # Nexa Rx
 
-First brand mockup for **Nexa Rx** — homepage inspired by [mycare.md](https://mycare.md/) structure, styled with the Nexa brand kit (midnight navy + teal sage + soft sand).
+Personalized telehealth for medical weight management, hormone health, and select prescription therapies.
 
-## Run
+Nexa Rx connects eligible adults with licensed clinicians, shows clear pricing before enrollment, and fulfills prescriptions through qualified U.S. pharmacy partners. Dietary supplements are sold in a separate non-prescription shop lane.
+
+**Organization:** [Rangel Holdings](https://github.com/Rangel-holdings)  
+**Repository:** [github.com/Rangel-holdings/nexa](https://github.com/Rangel-holdings/nexa)
+
+## Stack
+
+- [Next.js](https://nextjs.org/) 15 (App Router)
+- React 19
+- Static generation for public marketing pages
+- Deploy-ready for Vercel
+
+## Requirements
+
+- Node.js 20+
+
+## Getting started
 
 ```bash
 npm install
 npm run dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000).
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Local development server |
+| `npm run build` | Production build |
+| `npm start` | Serve production build |
+| `npm run lint` | Lint the project |
+
+## Site structure
+
+### Care programs
+
+- `/medical-weight-loss` — Clinician-guided weight management
+- `/mens-hormone-health` — Testosterone evaluation & care
+- `/womens-hormone-health` — Menopause & hormone care
+- `/peptide-therapy` — Clinician-prescribed peptide therapy
+
+### Core pages
+
+- `/` — Homepage
+- `/how-it-works` — Six-step care path
+- `/pricing` — Program cost breakdown
+- `/quality-and-safety` — Care standards and disclosures
+- `/medical-team` — Clinical team overview
+- `/faq` — Patient questions
+- `/check-eligibility` — Public eligibility form (program, state, contact only)
+- `/patient-login` — Patient login
+- `/patient-center` — Patient center shell
+
+### Shop (supplements)
+
+- `/supplements` — Collection
+- `/supplements/[slug]` — Product pages
+- `/supplements/bundles` — Bundles
+- `/supplements/subscribe-and-save` — Recurring purchase options
+- `/supplements/order-support` — Order support
+- `/supplements/checkout` — Mock checkout (no live payments)
+
+## Product model
+
+- **Clinical care** — Licensed clinicians; prescription treatment is not guaranteed
+- **Pharmacy fulfillment** — Qualified U.S. compounding pharmacies / outsourcing facilities as applicable
+- **Supplements** — Non-prescription retail lane, separate from clinical intake and prescribing
+
+## SEO & privacy
+
+- Unique metadata and canonical URLs per route
+- Organization, Breadcrumb, and Product JSON-LD where applicable
+- Dynamic `robots.txt` and `sitemap.xml`
+- Preview environments set to `noindex`
+- Public lead form limited to program interest, state, and contact details
+- Medical intake belongs in the secure clinical portal (not the marketing site)
+
 ## Deploy (Vercel)
 
-Repo: [github.com/Emmanuelombaye/nexa](https://github.com/Emmanuelombaye/nexa)
+1. Import [Rangel-holdings/nexa](https://github.com/Rangel-holdings/nexa) in Vercel
+2. Framework: **Next.js**
+3. Build command: `npm run build`
+4. Keep preview deployments noindexed until claims, pricing, and clinical pathways are approved
 
-1. Import the repo in Vercel  
-2. Framework preset: **Vite** (or leave auto)  
-3. Build: `npm run build` · Output: `dist`  
-4. `vercel.json` already sets SPA rewrites + asset caching  
+## Project layout
 
-Favicon: `/favicon.svg` (NX monogram on midnight navy)
+```text
+app/           Next.js App Router pages
+components/    Shared UI (header, footer, forms, program pages)
+lib/           Site content and shared data
+public/        Static assets
+src/index.css  Global styles
+```
 
-## Brand assets
+## Brand direction
 
-Source brand boards live in `public/brand/` (copied from the design PNGs in this folder).
+Navy, cream, and teal palette with a premium medical-care feel—care platform first, not a drug catalog.
 
-| File | Use |
-|------|-----|
-| `brand-guide-offers.png` | Hero / treatment imagery |
-| `brand-guide-light.png` | Treatment cards |
-| `brand-guide-dark.png` | Dark brand band |
-| `logo-suite-*.png` | Logo / identity panels |
-| `digital-icons.png` | Floating brand visual |
+## Author
 
-## Homepage sections (mycare.md flow)
-
-1. Trust bar  
-2. Hero (“Your care. Your way.”) + featured Tirzepatide card  
-3. Social proof strip  
-4. Treatments grid (GLP-1, TRT, HRT, Peptides)  
-5. Doctor-led quality + stats  
-6. How it works (4 steps)  
-7. Brand story band  
-8. FAQ  
-9. Final CTA + footer  
-
-## Next
-
-Wire real product photos, intake funnel, and Patient Center when ready.
+Maintained by **Ombaye** for Rangel Holdings.
