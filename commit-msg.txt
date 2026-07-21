@@ -1,3 +1,0 @@
-Complete revision brief compliance pass for Nexa Rx Next.js site.
-
-Adds nav dropdowns, full homepage sections, all four pricing cards, shop sub-pages, richer program pages, and removes legacy Vite SPA files.
