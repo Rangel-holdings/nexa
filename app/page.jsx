@@ -50,7 +50,7 @@ export default function HomePage() {
               <p className="hero__stats-note">*Timing not guaranteed. Availability varies by state and treatment.</p>
             </div>
 
-            <div className="hero__visual">
+            <div className="hero__visual" data-reveal="right">
               <article className="hero-card">
                 <div className="hero-card__media">
                   <SiteImage
@@ -58,7 +58,8 @@ export default function HomePage() {
                     alt={media.weightLoss.alt}
                     fill
                     priority
-                    sizes="(max-width: 768px) 100vw, 480px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 480px"
+                    quality={74}
                   />
                 </div>
                 <div className="hero-card__body">
@@ -116,18 +117,24 @@ export default function HomePage() {
               <p className="section__sub">Ongoing clinical support. Clear pricing before enrollment.</p>
             </div>
             <div className="treat-grid">
-              {programs.map((program) => {
+              {programs.map((program, index) => {
                 const isPeptide = program.slug === 'peptide-therapy'
                 const image = programImages[program.slug]
                 return (
-                  <article key={program.slug} className="treat-card">
+                  <article
+                    key={program.slug}
+                    className="treat-card"
+                    data-reveal="up"
+                    style={{ '--delay': `${index * 70}ms` }}
+                  >
                     {image && (
                       <div className="treat-card__media">
                         <SiteImage
                           src={image.src}
                           alt={image.alt}
                           fill
-                          sizes="(max-width: 768px) 100vw, 280px"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                          quality={70}
                         />
                       </div>
                     )}
@@ -135,9 +142,11 @@ export default function HomePage() {
                       <span className="pill">{isPeptide ? 'PRESCRIPTION THERAPY' : 'Care Program'}</span>
                       <p className="treat-card__cat">{program.category}</p>
                       <h3>{program.title}</h3>
-                      <p>{program.description}</p>
+                      <p className="treat-card__desc">{program.description}</p>
                       <p className="treat-card__price">{program.price}</p>
-                      {program.priceNote && <p className="treat-card__price-note">{program.priceNote}</p>}
+                      <p className={`treat-card__price-note ${program.priceNote ? '' : 'is-empty'}`}>
+                        {program.priceNote || '\u00A0'}
+                      </p>
                       <div className="treat-card__actions">
                         <Link href={`/${program.slug}`}>
                           {isPeptide ? 'View Peptide Therapy' : 'View Details'}

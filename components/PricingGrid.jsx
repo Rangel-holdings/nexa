@@ -13,13 +13,24 @@ const imageByTitle = {
 export default function PricingGrid() {
   return (
     <section className="container pricing-grid">
-      {pricingPrograms.map((program) => {
+      {pricingPrograms.map((program, index) => {
         const image = imageByTitle[program.title]
         return (
-          <article key={program.title} className="pricing-card">
+          <article
+            key={program.title}
+            className="pricing-card"
+            data-reveal="up"
+            style={{ '--delay': `${index * 70}ms` }}
+          >
             {image && (
               <div className="pricing-card__media">
-                <SiteImage src={image.src} alt={image.alt} fill sizes="(max-width: 768px) 100vw, 420px" />
+                <SiteImage
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
+                  quality={70}
+                />
               </div>
             )}
             <div className="pricing-card__header">

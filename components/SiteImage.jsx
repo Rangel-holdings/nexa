@@ -1,8 +1,7 @@
 import Image from 'next/image'
 
 /**
- * Optimized site image with sensible defaults for LCP and cacheability.
- * Prefer fill + sizes for responsive cards; use width/height for static layouts.
+ * Optimized site image — AVIF/WebP via next/image, responsive sizes, lazy by default.
  */
 export default function SiteImage({
   src,
@@ -12,13 +11,13 @@ export default function SiteImage({
   fill = false,
   priority = false,
   className = '',
-  sizes = '(max-width: 768px) 100vw, 50vw',
-  quality = 75,
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px',
+  quality = 72,
 }) {
   const shared = {
     src,
     alt: alt || '',
-    className,
+    className: className ? `site-image ${className}` : 'site-image',
     sizes,
     quality,
     priority,
@@ -27,8 +26,15 @@ export default function SiteImage({
   }
 
   if (fill) {
-    return <Image {...shared} fill style={{ objectFit: 'cover' }} />
+    return <Image {...shared} fill sizes={sizes} style={{ objectFit: 'cover' }} />
   }
 
-  return <Image {...shared} width={width} height={height} style={{ width: '100%', height: 'auto' }} />
+  return (
+    <Image
+      {...shared}
+      width={width}
+      height={height}
+      style={{ width: '100%', height: 'auto' }}
+    />
+  )
 }

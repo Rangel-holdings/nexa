@@ -1,5 +1,8 @@
+import Link from 'next/link'
 import PageShell from '../../../components/PageShell'
 import BreadcrumbJsonLd from '../../../components/BreadcrumbJsonLd'
+import SiteImage from '../../../components/SiteImage'
+import { media } from '../../../lib/media'
 
 export const metadata = {
   title: 'Supplements Checkout | Nexa Rx',
@@ -18,16 +21,48 @@ export default function Page() {
         ]}
       />
       <main className="pricing-page">
-        <section className="container pricing-page__hero">
-          <p className="eyebrow">Checkout (Mock)</p>
-          <h1>Review recurring terms before purchase.</h1>
-          <p className="lede">
-            This demo checkout shows one-time price, subscription price, renewal frequency, cancellation method,
-            return policy, and shipping terms before payment.
-          </p>
+        <section className="container program-split">
+          <div className="program-split__copy">
+            <p className="eyebrow">Checkout (Mock)</p>
+            <h1>Review recurring terms before purchase.</h1>
+            <p className="lede">
+              This demo checkout shows one-time price, subscription price, renewal frequency, cancellation method,
+              return policy, and shipping terms before payment.
+            </p>
+            <div className="hero__cta">
+              <Link href="/supplements" className="btn btn--primary btn--lg">
+                Shop Supplements
+              </Link>
+              <Link href="/supplements/order-support" className="btn btn--outline btn--lg">
+                View Details
+              </Link>
+            </div>
+          </div>
+          <div className="program-split__media" data-reveal="right">
+            <SiteImage
+              src={media.packaging.src}
+              alt={media.packaging.alt}
+              fill
+              priority
+              sizes="(max-width: 640px) 100vw, 50vw"
+            />
+          </div>
         </section>
         <section className="container pricing-grid">
-          <article className="pricing-card">
+          <article className="pricing-card" data-reveal="up">
+            <div className="pricing-card__media">
+              <SiteImage
+                src={media.heroProduct.src}
+                alt={media.heroProduct.alt}
+                fill
+                sizes="(max-width: 640px) 100vw, 420px"
+                quality={70}
+              />
+            </div>
+            <div className="pricing-card__header">
+              <h2>Before you pay</h2>
+              <p className="subtitle">Clear recurring terms</p>
+            </div>
             <div className="pricing-card__row">
               <span className="label">One-time purchase</span>
               <span className="value">Displayed per product before payment</span>
@@ -44,7 +79,7 @@ export default function Page() {
               <span className="label">Cancellation method</span>
               <span className="value">Cancel from account settings or support prior to renewal</span>
             </div>
-            <div className="pricing-card__row">
+            <div className="pricing-card__row limitation-row">
               <span className="label">Return and shipping terms</span>
               <span className="value">Policies shown before order placement</span>
             </div>

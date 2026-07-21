@@ -1,5 +1,6 @@
 import SiteHeader from './SiteHeader'
 import SiteFooter from './SiteFooter'
+import RevealObserver from './RevealObserver'
 import Link from 'next/link'
 
 export default function PageShell({ children, stickyMode = 'eligibility' }) {
@@ -8,9 +9,10 @@ export default function PageShell({ children, stickyMode = 'eligibility' }) {
       <SiteHeader />
       {children}
       <SiteFooter />
+      <RevealObserver />
       <div className="mobile-sticky-cta">
         {stickyMode === 'shop' ? (
-          <Link href="/supplements/checkout" className="btn btn--primary btn--lg">
+          <Link href="/supplements" className="btn btn--primary btn--lg">
             Shop Supplements
           </Link>
         ) : (
