@@ -1,0 +1,52 @@
+import Link from 'next/link'
+import { shopLinks, treatmentLinks } from '../lib/site-data'
+
+export default function SiteFooter() {
+  return (
+    <footer className="footer">
+      <div className="container footer__grid">
+        <div>
+          <p className="logo__word">
+            Nexa <span className="logo__rx">Rx</span>
+          </p>
+          <p className="footer__tag">Licensed clinical care. Clear pricing.</p>
+        </div>
+        <div>
+          <h4>Care</h4>
+          {treatmentLinks.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/how-it-works">How It Works</Link>
+          <Link href="/pricing">Pricing</Link>
+          <Link href="/quality-and-safety">Quality &amp; Safety</Link>
+          <Link href="/faq">FAQ</Link>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <Link href="/medical-team">Medical Team</Link>
+          <Link href="/check-eligibility">Check Eligibility</Link>
+          <Link href="/patient-login">Patient Login</Link>
+          <Link href="/patient-center">Patient Center</Link>
+          {shopLinks.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div className="container footer__bottom">
+        <p>&copy; {new Date().getFullYear()} Nexa Rx. All rights reserved.</p>
+        <p className="footer__legal">
+          Nexa Rx is a telehealth platform connecting eligible patients with licensed clinicians and qualified U.S.
+          pharmacy partners. Compounded medications are not FDA-approved as finished branded products. Prescription
+          treatment is not guaranteed; eligibility and treatment decisions are made by a licensed clinician.
+          Availability varies by state and treatment. Dietary supplements are non-prescription products and are sold
+          separately from clinical care. *Timing not guaranteed. State, pharmacy, product, and eligibility limitations
+          apply.
+        </p>
+      </div>
+    </footer>
+  )
+}
