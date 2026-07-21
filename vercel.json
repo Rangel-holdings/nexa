@@ -1,10 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
+  "framework": "nextjs",
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -30,15 +26,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400"
-        }
-      ]
-    },
-    {
-      "source": "/index.html",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }

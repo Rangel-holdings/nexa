@@ -1107,6 +1107,104 @@ ul { list-style: none; }
   color: var(--navy);
 }
 
+.treat-card__price-note {
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--slate);
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* ── Hero additions ─────────────────────────────────────────────────────── */
+
+.hero__disclosure {
+  font-size: 0.75rem;
+  color: rgba(15, 23, 34, 0.52);
+  line-height: 1.45;
+  max-width: 34rem;
+  margin-bottom: 1.35rem;
+  font-weight: 500;
+}
+
+.hero__stats-note {
+  margin-top: 0.55rem;
+  font-size: 0.68rem;
+  color: var(--slate);
+  font-weight: 500;
+}
+
+/* ── Supplements section (NON-PRESCRIPTION SUPPORT) ─────────────────────── */
+
+.supplements {
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(77, 170, 154, 0.10), transparent 55%),
+    var(--sand);
+  padding: 4.5rem 0;
+  text-align: center;
+}
+
+.supplements__inner {
+  max-width: 640px;
+  margin-inline: auto;
+  display: grid;
+  gap: 1.25rem;
+  justify-items: center;
+}
+
+.supplements h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--navy);
+}
+
+.supplements .lede {
+  color: rgba(15, 23, 34, 0.68);
+  margin-bottom: 0;
+}
+
+.supplements__disclaimer {
+  font-size: 0.72rem;
+  color: var(--slate);
+  line-height: 1.5;
+  max-width: 36rem;
+  font-weight: 500;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+/* ── Quality & Safety supplement note ───────────────────────────────────── */
+
+.quality__supplement-note {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1.05rem;
+  background: rgba(77, 170, 154, 0.07);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 0.65rem 0.65rem 0;
+  font-size: 0.85rem;
+  color: rgba(15, 23, 34, 0.72);
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+/* ── Steps — 6-step grid at large breakpoint ─────────────────────────────── */
+
+@media (min-width: 1024px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1280px) {
+  .steps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+
+/* ── Supplements mobile ──────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .supplements { padding: 3rem 0; }
+  .supplements h2 { font-size: clamp(1.85rem, 8vw, 2.4rem); }
+}
+
 .how__visual {
   margin: 2rem auto 0;
   max-width: 880px;
@@ -1482,4 +1580,165 @@ ul { list-style: none; }
   }
   .trust-bar__track { animation: none !important; }
 }
+
+/* ── Pricing Page Styles ─────────────────────────────────────────────────── */
+
+.pricing-page {
+  padding: 4.5rem 0;
+  background: linear-gradient(180deg, var(--cloud) 0%, var(--sand) 100%);
+}
+
+.pricing-page__hero {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.pricing-page__hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--navy);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.pricing-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.pricing-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card__header {
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.pricing-card__header h2 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.pricing-card__header .subtitle {
+  font-size: 0.85rem;
+  color: var(--slate);
+  font-weight: 600;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pricing-card__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+
+.pricing-card__row:last-of-type {
+  border-bottom: none;
+}
+
+.pricing-card__row .label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.pricing-card__row .value {
+  color: rgba(15, 23, 34, 0.82);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.pricing-card__row .value.highlighted {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--teal-deep);
+  line-height: 1;
+  font-weight: 600;
+}
+
+.pricing-card__row.limitation-row {
+  background: rgba(15, 23, 34, 0.02);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.pricing-card__footer {
+  margin-top: 2rem;
+}
+
+.pricing-card__footer .btn {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .pricing-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .pricing-card {
+    padding: 1.85rem 1.5rem;
+  }
+}
+
+.mobile-sticky-cta {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-sticky-cta {
+    position: fixed;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    z-index: 90;
+    display: block;
+  }
+
+  .mobile-sticky-cta .btn {
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(15, 23, 34, 0.24);
+  }
+}
+
+.faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__item p {
+  margin-top: 0.75rem;
+}
+
 
