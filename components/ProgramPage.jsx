@@ -36,8 +36,8 @@ export default function ProgramPage({ program }) {
               <Link className="btn btn--primary btn--lg" href="/check-eligibility">
                 Check Eligibility
               </Link>
-              <Link className="btn btn--outline btn--lg" href="/pricing">
-                View Pricing
+              <Link className="btn btn--outline btn--lg" href="/#treatments">
+                View Treatments
               </Link>
             </div>
           </div>

@@ -491,13 +491,18 @@ ul { list-style: none; }
 
 .hero--home {
   position: relative;
-  padding: 0;
+  padding: 1.5rem 0 3.5rem;
   overflow: hidden;
-  background: var(--navy-deep);
 }
 
 .hero--home__backdrop {
-  display: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(77, 170, 154, 0.14), transparent 34%),
+    radial-gradient(circle at 88% 0%, rgba(15, 23, 34, 0.05), transparent 42%),
+    linear-gradient(180deg, #fafaf8 0%, #f3f0ea 58%, #ece7df 100%);
+  pointer-events: none;
 }
 
 .hero--cover {
@@ -506,6 +511,12 @@ ul { list-style: none; }
   display: flex;
   align-items: flex-end;
   perspective: 1200px;
+  padding: 0;
+  background: var(--navy-deep);
+}
+
+.hero--cover .hero--home__backdrop {
+  display: none;
 }
 
 .hero--cover__media {
@@ -578,12 +589,18 @@ ul { list-style: none; }
   max-width: 38rem;
 }
 
+.hero__copy {
+  position: relative;
+  z-index: 1;
+  perspective: 1000px;
+}
+
 .hero-anim {
   --hero-delay: 0ms;
   opacity: 0;
-  transform: translate3d(0, 28px, -40px) rotateX(12deg) scale(0.97);
+  transform: translate3d(0, 22px, -28px) rotateX(8deg) scale(0.98);
   transform-origin: left center;
-  animation: hero-copy-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--hero-delay) forwards;
+  animation: hero-copy-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--hero-delay) forwards;
   will-change: transform, opacity;
 }
 

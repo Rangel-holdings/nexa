@@ -30,8 +30,8 @@ export default function Page() {
               <Link className="btn btn--primary btn--lg" href="/check-eligibility">
                 Check Eligibility
               </Link>
-              <Link className="btn btn--outline btn--lg" href="/how-it-works">
-                How It Works
+              <Link className="btn btn--outline btn--lg" href="/#treatments">
+                View Treatments
               </Link>
             </div>
           </div>

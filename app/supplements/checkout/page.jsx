@@ -4,12 +4,14 @@ import BreadcrumbJsonLd from '../../../components/BreadcrumbJsonLd'
 import SiteImage from '../../../components/SiteImage'
 import MediaFrame from '../../../components/MediaFrame'
 import { media } from '../../../lib/media'
+import { pageMetadata } from '../../../lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Supplements Checkout | Nexa Rx',
   description: 'Mock checkout flow for Nexa Rx supplements with recurring billing disclosures.',
-  alternates: { canonical: '/supplements/checkout' },
-}
+  path: '/supplements/checkout',
+  image: media.shopProduct.src,
+})
 
 export default function Page() {
   return (

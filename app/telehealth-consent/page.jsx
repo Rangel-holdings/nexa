@@ -95,7 +95,7 @@ export default function Page() {
               Check Eligibility
             </Link>
             <Link href="/privacy" className="btn btn--outline">
-              Privacy Policy
+              View Details
             </Link>
           </p>
         </section>
