@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 /** Lightweight scroll reveals for [data-reveal] elements. Respects reduced motion. */
 export default function RevealObserver() {
   useEffect(() => {
+    document.documentElement.classList.add('js')
+
     const nodes = Array.from(document.querySelectorAll('[data-reveal]'))
     if (!nodes.length) return undefined
 
@@ -22,14 +24,20 @@ export default function RevealObserver() {
           }
         })
       },
-      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -4% 0px' }
     )
 
     nodes.forEach((node, index) => {
       if (!node.style.getPropertyValue('--delay')) {
         node.style.setProperty('--delay', `${Math.min(index % 6, 5) * 55}ms`)
       }
-      observer.observe(node)
+      // Already in view on mount (heroes / above-fold) — show immediately
+      const rect = node.getBoundingClientRect()
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+        node.classList.add('is-in')
+      } else {
+        observer.observe(node)
+      }
     })
 
     return () => observer.disconnect()

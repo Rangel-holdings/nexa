@@ -31,10 +31,7 @@ export default function SiteFooter() {
           <Link href="/faq">FAQ</Link>
         </div>
         <div>
-          <h4>Company</h4>
-          <Link href="/medical-team">Medical Team</Link>
-          <Link href="/check-eligibility">Check Eligibility</Link>
-          <Link href="/patient-login">Patient Login</Link>
+          <h4>Shop</h4>
           {shopLinks.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
@@ -42,7 +39,10 @@ export default function SiteFooter() {
           ))}
         </div>
         <div>
-          <h4>Legal</h4>
+          <h4>Company</h4>
+          <Link href="/medical-team">Medical Team</Link>
+          <Link href="/check-eligibility">Check Eligibility</Link>
+          <Link href="/patient-login">Patient Login</Link>
           {legalLinks.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}

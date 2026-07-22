@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { shopLinks, treatmentLinks } from '../lib/site-data'
 
 const midLinks = [
@@ -18,15 +18,77 @@ const mobileExploreLinks = [
   { href: '/medical-team', label: 'Medical Team' },
 ]
 
-function NavDropdown({ label, items }) {
+function NavDropdown({ label, href, items, align = 'left' }) {
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef(null)
+  const menuId = useId()
+  const closeTimer = useRef(null)
+
+  const clearCloseTimer = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current)
+      closeTimer.current = null
+    }
+  }
+
+  const openMenu = () => {
+    clearCloseTimer()
+    setOpen(true)
+  }
+
+  const scheduleClose = () => {
+    clearCloseTimer()
+    closeTimer.current = setTimeout(() => setOpen(false), 120)
+  }
+
+  useEffect(() => () => clearCloseTimer(), [])
+
+  useEffect(() => {
+    if (!open) return undefined
+
+    const onPointerDown = (event) => {
+      if (!rootRef.current?.contains(event.target)) setOpen(false)
+    }
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
+
   return (
-    <div className="nav-dropdown">
-      <button type="button" className="nav-dropdown__trigger" aria-haspopup="true">
-        {label}
-      </button>
-      <div className="nav-dropdown__menu" role="menu">
+    <div
+      className={`nav-dropdown ${align === 'right' ? 'nav-dropdown--right' : ''} ${open ? 'is-open' : ''}`}
+      ref={rootRef}
+      onMouseEnter={openMenu}
+      onMouseLeave={scheduleClose}
+    >
+      <Link
+        href={href}
+        className="nav-dropdown__trigger"
+        aria-haspopup="true"
+        aria-expanded={open}
+        aria-controls={menuId}
+        onClick={() => setOpen(false)}
+        onFocus={openMenu}
+      >
+        <span>{label}</span>
+        <span className="nav-dropdown__chevron" aria-hidden="true" />
+      </Link>
+      <div id={menuId} className="nav-dropdown__menu" role="menu">
         {items.map((item) => (
-          <Link key={item.href} href={item.href} role="menuitem">
+          <Link
+            key={item.href}
+            href={item.href}
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            onFocus={openMenu}
+          >
             {item.label}
           </Link>
         ))}
@@ -88,13 +150,13 @@ export default function SiteHeader({ variant = 'default' }) {
           </Link>
 
           <nav className="nav" aria-label="Primary">
-            <NavDropdown label="Treatments" items={treatmentLinks} />
+            <NavDropdown label="Treatments" href="/#treatments" items={treatmentLinks} />
             {midLinks.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
               </Link>
             ))}
-            <NavDropdown label="Shop" items={shopLinks} />
+            <NavDropdown label="Shop" href="/supplements" items={shopLinks} align="right" />
             {endLinks.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
@@ -142,11 +204,16 @@ export default function SiteHeader({ variant = 'default' }) {
           </nav>
           <p className="mobile-nav__label">Shop</p>
           <nav className="mobile-nav__links">
-            {shopLinks.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
-                {item.label}
-              </Link>
-            ))}
+            <Link href="/supplements" onClick={() => setMenuOpen(false)}>
+              All Supplements
+            </Link>
+            {shopLinks
+              .filter((item) => item.href !== '/supplements')
+              .map((item) => (
+                <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+                  {item.label}
+                </Link>
+              ))}
           </nav>
           <p className="mobile-nav__label">Explore</p>
           <nav className="mobile-nav__links">

@@ -81,7 +81,7 @@ export default function HomePage() {
                       </div>
                     )}
                     <div className="treat-card__body">
-                      <span className="pill">{isPeptide ? 'PRESCRIPTION THERAPY' : 'Care Program'}</span>
+                      <span className="pill">Care Program</span>
                       <p className="treat-card__cat">{program.category}</p>
                       <h3>{program.title}</h3>
                       <p className="treat-card__desc">{program.description}</p>
