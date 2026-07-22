@@ -31,7 +31,7 @@ export default function Page() {
             </p>
             <div className="hero__cta">
               <Link className="btn btn--primary btn--lg" href="/check-eligibility">
-                Get your itemized quote
+                Check Eligibility
               </Link>
               <Link className="btn btn--outline btn--lg" href="/#treatments">
                 View Treatments

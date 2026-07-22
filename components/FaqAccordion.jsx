@@ -13,7 +13,7 @@ export default function FaqAccordion() {
           <p className="eyebrow">Support</p>
           <h2>Common questions regarding your care.</h2>
           <p className="section__sub">
-            We believe in transparency — treatments, process, and our commitment to your health.
+            We believe in transparency — care programs, pricing, pharmacy fulfillment, and your privacy.
           </p>
         </div>
         <div className="faq__list">

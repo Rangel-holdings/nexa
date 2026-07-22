@@ -36,7 +36,7 @@ export default function PricingModel() {
 
         <div className="pricing-model__cta">
           <Link href="/check-eligibility" className="btn btn--primary btn--lg">
-            Get your itemized quote
+            Check Eligibility
           </Link>
           <p className="hero__stats-note">{pricingModel.disclaimer}</p>
         </div>

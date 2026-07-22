@@ -33,12 +33,18 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero-lifestyle.png',
+        url: '/images/hero-home-desktop.webp',
         width: 1600,
-        height: 1200,
+        height: 900,
         alt: 'Nexa Rx telehealth care',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nexa Rx | Personalized Telehealth Care',
+    description: 'Licensed clinical care. Clear pricing. Qualified U.S. pharmacy fulfillment.',
+    images: ['/images/hero-home-desktop.webp'],
   },
   icons: {
     icon: '/favicon.svg',
@@ -59,11 +65,12 @@ export const viewport = {
 export default function RootLayout({ children }) {
   const orgJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': ['Organization', 'MedicalBusiness'],
     name: 'Nexa Rx',
     url: siteUrl,
     description:
       'Personalized telehealth for medical weight management, hormone health, and select prescription therapies.',
+    medicalSpecialty: 'Telemedicine',
   }
 
   return (

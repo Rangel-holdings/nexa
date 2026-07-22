@@ -118,7 +118,7 @@ export default function PricingGrid() {
 
             <div className="pricing-card__footer">
               <Link href="/check-eligibility" className="btn btn--primary btn--lg">
-                Get your program quote
+                Check Eligibility
               </Link>
               <Link href={`/${program.slug}`} className="btn btn--outline btn--lg">
                 View Details

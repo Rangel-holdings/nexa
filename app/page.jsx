@@ -6,6 +6,14 @@ import SiteImage from '../components/SiteImage'
 import MediaFrame from '../components/MediaFrame'
 import { careSteps, programs } from '../lib/site-data'
 import { media, programImages } from '../lib/media'
+import { pageMetadata } from '../lib/seo'
+
+export const metadata = pageMetadata({
+  title: 'Nexa Rx | Personalized Telehealth Care',
+  description:
+    'Connect online with licensed clinicians for medical weight management, hormone health, and select prescription therapies. Availability varies by state.',
+  path: '/',
+})
 
 export default function HomePage() {
   return (

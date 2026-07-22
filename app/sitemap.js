@@ -1,4 +1,4 @@
-import { siteUrl } from '../lib/site-data'
+import { siteUrl, supplements } from '../lib/site-data'
 
 export default function sitemap() {
   const routes = [
@@ -18,12 +18,13 @@ export default function sitemap() {
     '/faq',
     '/patient-login',
     '/check-eligibility',
+    ...supplements.map((item) => `/supplements/${item.slug}`),
   ]
 
   return routes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: route === '/' ? 'daily' : 'weekly',
-    priority: route === '/' ? 1 : 0.7,
+    priority: route === '/' ? 1 : route.startsWith('/supplements/') && route !== '/supplements' ? 0.6 : 0.7,
   }))
 }

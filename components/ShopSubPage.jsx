@@ -6,25 +6,6 @@ import MediaFrame from './MediaFrame'
 import { supplements } from '../lib/site-data'
 import { media } from '../lib/media'
 
-export function generateMetadata({ params }) {
-  const titles = {
-    bundles: 'Supplement Bundles | Nexa Rx Shop',
-    'subscribe-and-save': 'Subscribe & Save | Nexa Rx Shop',
-    'order-support': 'Order Support | Nexa Rx Shop',
-  }
-  const descriptions = {
-    bundles: 'Curated supplement bundles for everyday wellness support.',
-    'subscribe-and-save': 'Subscribe and save on Nexa Rx dietary supplements with clear recurring terms.',
-    'order-support': 'Order support for Nexa Rx supplement purchases, shipping, and returns.',
-  }
-
-  return {
-    title: titles[params.slug],
-    description: descriptions[params.slug],
-    alternates: { canonical: `/supplements/${params.slug}` },
-  }
-}
-
 const pageCopy = {
   bundles: {
     title: 'Supplement Bundles',
