@@ -58,8 +58,8 @@ export default function HomeHero() {
               alt={media.heroHomeDesktop.alt}
               fill
               priority
-              sizes="(max-width: 1023px) 0px, 50vw"
-              quality={68}
+              sizes="(max-width: 1023px) 0px, min(50vw, 800px)"
+              quality={70}
               className="hero__media-image"
             />
           </div>
@@ -69,8 +69,8 @@ export default function HomeHero() {
               alt={media.heroHomeMobile.alt}
               fill
               priority
-              sizes="(max-width: 1023px) 100vw, 0px"
-              quality={66}
+              sizes="(max-width: 1023px) min(100vw, 460px), 0px"
+              quality={68}
               className="hero__media-image"
             />
           </div>
