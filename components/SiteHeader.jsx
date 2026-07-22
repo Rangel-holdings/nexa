@@ -46,6 +46,23 @@ export default function SiteHeader({ variant = 'default' }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (!menuOpen) return undefined
+
+    const html = document.documentElement
+    const body = document.body
+    const prevHtmlOverflow = html.style.overflow
+    const prevBodyOverflow = body.style.overflow
+
+    html.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
+
+    return () => {
+      html.style.overflow = prevHtmlOverflow
+      body.style.overflow = prevBodyOverflow
+    }
+  }, [menuOpen])
+
   return (
     <div
       className={`site-top site-top--${variant} ${scrolled ? 'is-scrolled' : ''} ${menuOpen ? 'is-menu-open' : ''}`}
@@ -64,7 +81,7 @@ export default function SiteHeader({ variant = 'default' }) {
 
       <header className="header">
         <div className="container header__inner">
-          <Link href="/" className="logo" aria-label="Nexa Rx home">
+          <Link href="/" className="logo" aria-label="Nexa Rx home" onClick={() => setMenuOpen(false)}>
             <span className="logo__word">
               Nexa <span className="logo__rx">Rx</span>
             </span>
@@ -97,6 +114,7 @@ export default function SiteHeader({ variant = 'default' }) {
               className={`nav-toggle ${menuOpen ? 'is-open' : ''}`}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
+              aria-controls="mobile-nav-panel"
               onClick={() => setMenuOpen((open) => !open)}
             >
               <span />
@@ -107,7 +125,11 @@ export default function SiteHeader({ variant = 'default' }) {
         </div>
       </header>
 
-      <div className={`mobile-nav ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
+      <div
+        id="mobile-nav-panel"
+        className={`mobile-nav ${menuOpen ? 'is-open' : ''}`}
+        aria-hidden={!menuOpen}
+      >
         <button type="button" className="mobile-nav__scrim" aria-label="Close menu" onClick={() => setMenuOpen(false)} />
         <div className="mobile-nav__sheet">
           <p className="mobile-nav__label">Treatments</p>
