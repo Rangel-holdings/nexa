@@ -3,10 +3,10 @@ import SiteFooter from './SiteFooter'
 import RevealObserver from './RevealObserver'
 import Link from 'next/link'
 
-export default function PageShell({ children, stickyMode = 'eligibility' }) {
+export default function PageShell({ children, stickyMode = 'eligibility', headerVariant = 'default' }) {
   return (
     <div className="page">
-      <SiteHeader />
+      <SiteHeader variant={headerVariant} />
       {children}
       <SiteFooter />
       <RevealObserver />

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import PageShell from '../components/PageShell'
 import FaqAccordion from '../components/FaqAccordion'
+import HomeHero from '../components/HomeHero'
 import SiteImage from '../components/SiteImage'
 import MediaFrame from '../components/MediaFrame'
 import { careSteps, programs } from '../lib/site-data'
@@ -8,77 +9,9 @@ import { media, programImages } from '../lib/media'
 
 export default function HomePage() {
   return (
-    <PageShell stickyMode="eligibility">
+    <PageShell stickyMode="eligibility" headerVariant="home">
       <main>
-        <section className="hero">
-          <div className="container hero__grid">
-            <div className="hero__copy">
-              <p className="eyebrow">PERSONALIZED CARE. CLINICIAN-GUIDED OPTIONS.</p>
-              <h1>
-                Your care.<br />
-                <em>Your way.</em>
-              </h1>
-              <p className="lede">
-                Connect online with a licensed clinician for medical weight management, hormone health, and select
-                prescription therapies. See your options and costs before treatment begins.
-              </p>
-              <div className="hero__cta">
-                <Link href="/check-eligibility" className="btn btn--primary btn--lg">
-                  Check Eligibility
-                </Link>
-                <Link href="/#treatments" className="btn btn--outline btn--lg">
-                  View Treatments
-                </Link>
-              </div>
-              <p className="hero__disclosure">
-                Prescription treatment is not guaranteed. Eligibility and treatment decisions are made by a licensed
-                clinician. Availability varies by state and treatment.
-              </p>
-              <ul className="hero__stats">
-                <li>
-                  <strong>2 min</strong>
-                  <span>Eligibility check</span>
-                </li>
-                <li>
-                  <strong>Within 24 hours*</strong>
-                  <span>Typical clinical review</span>
-                </li>
-                <li>
-                  <strong>No insurance required</strong>
-                  <span>Simple self-pay care.</span>
-                </li>
-              </ul>
-              <p className="hero__stats-note">*Timing not guaranteed. Availability varies by state and treatment.</p>
-            </div>
-
-            <div className="hero__visual" data-reveal="right">
-              <article className="hero-card">
-                <div className="hero-card__media">
-                  <SiteImage
-                    src={media.weightLoss.src}
-                    alt={media.weightLoss.alt}
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 480px"
-                    quality={74}
-                  />
-                </div>
-                <div className="hero-card__body">
-                  <span className="pill">Featured Program</span>
-                  <p className="hero-card__cat">Medical Weight Loss</p>
-                  <h2>Clinician-Guided Weight Management</h2>
-                  <p>Personalized treatment options, ongoing clinical support, and discreet delivery.</p>
-                  <div className="hero-card__actions">
-                    <Link href="/medical-weight-loss">View Details</Link>
-                    <Link href="/check-eligibility" className="btn btn--primary btn--sm">
-                      Check Eligibility
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
+        <HomeHero />
 
         <section className="proof">
           <div className="container proof__inner">

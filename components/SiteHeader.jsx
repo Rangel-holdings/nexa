@@ -35,11 +35,11 @@ function NavDropdown({ label, items }) {
   )
 }
 
-export default function SiteHeader() {
+export default function SiteHeader({ variant = 'default' }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className={`site-top is-scrolled ${menuOpen ? 'is-menu-open' : ''}`}>
+    <div className={`site-top site-top--${variant} is-scrolled ${menuOpen ? 'is-menu-open' : ''}`}>
       <div className="trust-bar" aria-hidden="true">
         <div className="trust-bar__track">
           <span>LICENSED CLINICAL CARE</span>
