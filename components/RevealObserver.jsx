@@ -22,12 +22,12 @@ export default function RevealObserver() {
           }
         })
       },
-      { threshold: 0.14, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
     )
 
     nodes.forEach((node, index) => {
       if (!node.style.getPropertyValue('--delay')) {
-        node.style.setProperty('--delay', `${Math.min(index % 6, 5) * 60}ms`)
+        node.style.setProperty('--delay', `${Math.min(index % 6, 5) * 55}ms`)
       }
       observer.observe(node)
     })

@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 /**
  * Optimized site image — AVIF/WebP via next/image, responsive sizes, lazy by default.
+ * Priority heroes get high fetchPriority for LCP; others stay lazy + async decode.
  */
 export default function SiteImage({
   src,
@@ -23,6 +24,7 @@ export default function SiteImage({
     priority,
     loading: priority ? undefined : 'lazy',
     decoding: 'async',
+    fetchPriority: priority ? 'high' : 'auto',
   }
 
   if (fill) {
