@@ -4,13 +4,13 @@ import PageShell from './PageShell'
 import SiteImage from './SiteImage'
 import MediaFrame from './MediaFrame'
 import { supplements } from '../lib/site-data'
-import { media } from '../lib/media'
+import { media, supplementImages, bundleImages } from '../lib/media'
 
 const pageCopy = {
   bundles: {
     title: 'Supplement Bundles',
     body: 'Focused bundles tied to clear everyday needs. Each bundle is labeled as a dietary supplement and sold separately from prescription care.',
-    image: media.heroProduct,
+    image: media.bundlesHero,
   },
   'subscribe-and-save': {
     title: 'Subscribe & Save',
@@ -62,44 +62,49 @@ export default function ShopSubPage({ params }) {
         </section>
 
         {params.slug === 'bundles' && (
-          <section className="container treat-grid">
-            {supplements.slice(0, 3).map((item, index) => (
-              <article
-                key={item.slug}
-                className="treat-card"
-                data-reveal="up"
-                style={{ '--delay': `${index * 70}ms` }}
-              >
-                <div className="treat-card__media">
-                  <SiteImage
-                    src={media.shopProduct.src}
-                    alt={`${item.name} packaging`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 280px"
-                    quality={70}
-                  />
-                </div>
-                <div className="treat-card__body">
-                  <span className="pill">Dietary Supplement Bundle</span>
-                  <h3>{item.name} Bundle</h3>
-                  <p className="treat-card__desc">{item.description}</p>
-                  <p className="treat-card__price">From {item.subscribePrice}/month</p>
-                  <p className="treat-card__price-note is-empty">{'\u00A0'}</p>
-                  <div className="treat-card__actions">
-                    <Link href={`/supplements/${item.slug}`}>View Details</Link>
-                    <Link href={`/supplements/checkout?product=${item.slug}`} className="btn btn--primary btn--sm">
-                      Checkout
-                    </Link>
+          <section className="container bundle-grid">
+            {supplements.map((item, index) => {
+              const image = bundleImages[item.slug] || supplementImages[item.slug] || media.shopProduct
+              const shape = `bundle-card--shape-${(index % 4) + 1}`
+              return (
+                <article
+                  key={item.slug}
+                  className={`bundle-card ${shape}`}
+                  data-reveal="up"
+                  style={{ '--delay': `${index * 70}ms` }}
+                >
+                  <div className="bundle-card__media">
+                    <SiteImage
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                      quality={74}
+                    />
                   </div>
-                </div>
-              </article>
-            ))}
+                  <div className="bundle-card__body">
+                    <span className="pill">Dietary Supplement Bundle</span>
+                    <h3>{item.name} Bundle</h3>
+                    <p className="bundle-card__desc">{item.description}</p>
+                    <p className="bundle-card__price">From {item.subscribePrice}/month</p>
+                    <div className="bundle-card__actions">
+                      <Link href={`/supplements/${item.slug}`}>View Details</Link>
+                      <Link href={`/supplements/checkout?product=${item.slug}`} className="btn btn--primary btn--sm">
+                        Checkout
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
           </section>
         )}
 
         {params.slug === 'subscribe-and-save' && (
           <section className="container treat-grid">
-            {supplements.map((item, index) => (
+            {supplements.map((item, index) => {
+              const image = supplementImages[item.slug] || media.shopProduct
+              return (
               <article
                 key={item.slug}
                 className="treat-card"
@@ -108,11 +113,11 @@ export default function ShopSubPage({ params }) {
               >
                 <div className="treat-card__media">
                   <SiteImage
-                    src={media.shopProduct.src}
-                    alt={item.name}
+                    src={image.src}
+                    alt={image.alt}
                     fill
                     sizes="(max-width: 640px) 100vw, 280px"
-                    quality={70}
+                    quality={72}
                   />
                 </div>
                 <div className="treat-card__body">
@@ -131,7 +136,8 @@ export default function ShopSubPage({ params }) {
                   </div>
                 </div>
               </article>
-            ))}
+              )
+            })}
           </section>
         )}
 

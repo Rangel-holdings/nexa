@@ -8,13 +8,15 @@ import PricingGrid from '../../components/PricingGrid'
 import StateAvailability from '../../components/StateAvailability'
 import MediaFrame from '../../components/MediaFrame'
 import { media } from '../../lib/media'
+import { pageMetadata } from '../../lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Pricing | Nexa Rx',
   description:
     'Transparent telehealth pricing with $0 to start, itemized enrollment summaries, and program-specific inclusions before you pay.',
-  alternates: { canonical: '/pricing' },
-}
+  path: '/pricing',
+  image: media.pricingHero.src,
+})
 
 export default function Page() {
   return (

@@ -81,6 +81,20 @@ Open [http://localhost:3000](http://localhost:3000).
 - Optional preview password via `PREVIEW_PASSWORD` (see Deploy)
 - Public lead form limited to program interest, state, and contact details
 - Medical intake belongs in the secure clinical portal (not the marketing site)
+- Legal pages: `/privacy`, `/terms`, `/telehealth-consent`, `/supplement-terms`
+
+### Privacy / tracking audit (pre-launch)
+
+| Surface | Status |
+|---------|--------|
+| Marketing site forms | Contact, state, program interest only |
+| Clinical intake | Secure portal only — not on public pages |
+| Ad pixels / Meta / GTM | Not present in codebase |
+| Session replay | Not present |
+| Health data to ads | Forbidden by design — see Privacy Policy |
+| Preview indexing | `noindex` + optional `PREVIEW_PASSWORD` Basic Auth |
+
+Re-audit before enabling paid traffic or third-party analytics.
 
 ## Deploy (Vercel)
 

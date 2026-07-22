@@ -54,7 +54,7 @@ export default function ProgramPage({ program }) {
         </section>
 
         <section className="container program-detail-grid">
-          <article className="program-detail-card">
+          <article className="program-detail-card" data-reveal="up">
             <p className="eyebrow">What&apos;s included</p>
             <h2>Program highlights</h2>
             <ul className="check-list">
@@ -64,7 +64,7 @@ export default function ProgramPage({ program }) {
             </ul>
           </article>
 
-          <article className="program-detail-card">
+          <article className="program-detail-card" data-reveal="up" style={{ '--delay': '70ms' }}>
             <p className="eyebrow">Ongoing care</p>
             <h2>Follow-up, messaging, and refills</h2>
             <ul className="check-list">
@@ -75,8 +75,20 @@ export default function ProgramPage({ program }) {
             </ul>
           </article>
 
+          {program.medicationStatus && (
+            <article className="program-detail-card" data-reveal="up" style={{ '--delay': '140ms' }}>
+              <p className="eyebrow">Approved vs compounded</p>
+              <h2>{program.medicationStatus.title}</h2>
+              <ul className="check-list">
+                {program.medicationStatus.points.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          )}
+
           {availability && (
-            <article className="program-detail-card">
+            <article className="program-detail-card" data-reveal="up" style={{ '--delay': '210ms' }}>
               <p className="eyebrow">State availability</p>
               <h2>Where this program is offered</h2>
               <p className="lede">{availability.summary}</p>
@@ -102,7 +114,7 @@ export default function ProgramPage({ program }) {
         </section>
 
         {isPeptide && (
-          <section className="container">
+          <section className="container" data-reveal="up">
             <div className="quality__supplement-note">
               <p>
                 Nexa Rx offers prescription therapies for eligible patients and does not sell research-use-only products.

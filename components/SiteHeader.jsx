@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { shopLinks, treatmentLinks } from '../lib/site-data'
 
 const midLinks = [
@@ -37,9 +37,19 @@ function NavDropdown({ label, items }) {
 
 export default function SiteHeader({ variant = 'default' }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 18)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <div className={`site-top site-top--${variant} is-scrolled ${menuOpen ? 'is-menu-open' : ''}`}>
+    <div
+      className={`site-top site-top--${variant} ${scrolled ? 'is-scrolled' : ''} ${menuOpen ? 'is-menu-open' : ''}`}
+    >
       <div className="trust-bar" aria-hidden="true">
         <div className="trust-bar__track">
           <span>LICENSED CLINICAL CARE</span>

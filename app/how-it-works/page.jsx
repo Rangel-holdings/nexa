@@ -5,12 +5,14 @@ import SiteImage from '../../components/SiteImage'
 import MediaFrame from '../../components/MediaFrame'
 import { careSteps } from '../../lib/site-data'
 import { media, howItWorksStepImages } from '../../lib/media'
+import { pageMetadata } from '../../lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'How It Works | Nexa Rx',
   description: 'See the six-step Nexa Rx care path from eligibility to pharmacy fulfillment and ongoing support.',
-  alternates: { canonical: '/how-it-works' },
-}
+  path: '/how-it-works',
+  image: media.howItWorksHero.src,
+})
 
 export default function Page() {
   return (
@@ -43,13 +45,15 @@ export default function Page() {
         </section>
 
         <section className="container how-steps-section">
+          <div className="how-steps-rail" aria-hidden="true" />
           <div className="steps how-steps">
             {careSteps.map((step, index) => {
               const image = howItWorksStepImages[index]
+              const shape = `how-step-card--shape-${(index % 6) + 1}`
               return (
                 <article
                   key={step.n}
-                  className="step how-step-card"
+                  className={`step how-step-card ${shape}`}
                   data-reveal="up"
                   style={{ '--delay': `${index * 70}ms` }}
                 >
@@ -58,12 +62,12 @@ export default function Page() {
                       src={image.src}
                       alt={image.alt}
                       fill
-                      quality={68}
+                      quality={72}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 180px"
                     />
+                    <span className="how-step-card__badge">Step {step.n}</span>
                   </div>
                   <div className="how-step-card__body">
-                    <span className="step__n">Step {step.n}</span>
                     <h3>{step.title}</h3>
                     <p>{step.text}</p>
                   </div>

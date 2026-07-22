@@ -4,13 +4,15 @@ import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 import SiteImage from '../../components/SiteImage'
 import MediaFrame from '../../components/MediaFrame'
 import { media } from '../../lib/media'
+import { pageMetadata } from '../../lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Quality & Safety | Nexa Rx',
   description:
     'Clear standards for licensed clinical care, pharmacy fulfillment, secure portal intake, and supplement separation.',
-  alternates: { canonical: '/quality-and-safety' },
-}
+  path: '/quality-and-safety',
+  image: media.qualityHero.src,
+})
 
 export default function Page() {
   return (

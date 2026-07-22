@@ -4,12 +4,14 @@ import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 import MediaFrame from '../../components/MediaFrame'
 import { medicalTeamRoles } from '../../lib/site-data'
 import { media } from '../../lib/media'
+import { pageMetadata } from '../../lib/seo'
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Medical Team | Nexa Rx',
-  description: 'Meet the licensed clinical team and understand how medical decisions are made at Nexa Rx.',
-  alternates: { canonical: '/medical-team' },
-}
+  description: 'Licensed clinicians, care coordination, and pharmacy partnerships behind Nexa Rx patient-first standards.',
+  path: '/medical-team',
+  image: media.medicalTeamHero.src,
+})
 
 export default function Page() {
   return (
@@ -44,19 +46,31 @@ export default function Page() {
         </section>
 
         <section className="container program-detail-grid">
-          {medicalTeamRoles.map((role) => (
-            <article key={role.title} className="program-detail-card">
+          {medicalTeamRoles.map((role, index) => (
+            <article
+              key={role.title}
+              className="program-detail-card"
+              data-reveal="up"
+              style={{ '--delay': `${index * 70}ms` }}
+            >
+              <p className="eyebrow">Care network</p>
               <h2>{role.title}</h2>
               <p>{role.text}</p>
             </article>
           ))}
         </section>
 
-        <section className="container quality__supplement-note" style={{ marginTop: '2rem' }}>
-          <p>
-            Prescription treatment is not guaranteed. Eligibility and treatment decisions are made solely by a licensed
-            clinician based on your medical evaluation. Nexa Rx is a care platform — not a pharmacy.
-          </p>
+        <section className="container medical-team-note" data-reveal="up">
+          <div className="quality__supplement-note">
+            <h2>Licensure &amp; transparency</h2>
+            <p>
+              Clinician identities, credentials, and state licensure are confirmed inside the secure clinical portal
+              during evaluation. Prescription treatment is not guaranteed. Nexa Rx is a care platform — not a pharmacy.
+            </p>
+            <p style={{ marginTop: '0.75rem' }}>
+              Named clinician profiles will appear here as the provider network is published for each state and program.
+            </p>
+          </div>
         </section>
       </main>
     </PageShell>

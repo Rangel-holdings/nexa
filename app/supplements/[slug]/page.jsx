@@ -5,7 +5,8 @@ import BreadcrumbJsonLd from '../../../components/BreadcrumbJsonLd'
 import SupplementFactsPanel from '../../../components/SupplementFactsPanel'
 import SiteImage from '../../../components/SiteImage'
 import { supplements, siteUrl } from '../../../lib/site-data'
-import { media } from '../../../lib/media'
+import { media, supplementImages } from '../../../lib/media'
+import { pageMetadata } from '../../../lib/seo'
 
 export function generateStaticParams() {
   return supplements.map((item) => ({ slug: item.slug }))
@@ -14,16 +15,20 @@ export function generateStaticParams() {
 export function generateMetadata({ params }) {
   const product = supplements.find((item) => item.slug === params.slug)
   if (!product) return {}
-  return {
+  const image = supplementImages[product.slug] || media.shopProduct
+  return pageMetadata({
     title: `${product.name} | Nexa Rx Supplements`,
     description: `${product.name} dietary supplement details, pricing, and recurring terms.`,
-    alternates: { canonical: `/supplements/${product.slug}` },
-  }
+    path: `/supplements/${product.slug}`,
+    image: image.src,
+  })
 }
 
 export default function Page({ params }) {
   const product = supplements.find((item) => item.slug === params.slug)
   if (!product) notFound()
+
+  const image = supplementImages[product.slug] || media.shopProduct
 
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -31,7 +36,7 @@ export default function Page({ params }) {
     name: product.name,
     category: product.category,
     description: product.description,
-    image: `${siteUrl}${media.shopProduct.src}`,
+    image: `${siteUrl}${image.src}`,
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'USD',
@@ -59,12 +64,12 @@ export default function Page({ params }) {
           <p className="lede">{product.description}</p>
           <div className="program-hero-media" data-reveal="up">
             <SiteImage
-              src={media.shopProduct.src}
-              alt={`${product.name} packaging`}
+              src={image.src}
+              alt={image.alt}
               fill
               priority
               sizes="(max-width: 640px) 100vw, 720px"
-              quality={72}
+              quality={74}
             />
           </div>
           <p className="supplements__disclaimer">

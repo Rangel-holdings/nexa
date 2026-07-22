@@ -1,12 +1,15 @@
 import PageShell from '../../components/PageShell'
 import EligibilityForm from '../../components/EligibilityForm'
 import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
+import { pageMetadata } from '../../lib/seo'
+import { media } from '../../lib/media'
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Check Eligibility | Nexa Rx',
   description: 'Start with a short eligibility check for Nexa Rx programs. Program, state, and contact only.',
-  alternates: { canonical: '/check-eligibility' },
-}
+  path: '/check-eligibility',
+  image: media.eligibilitySide.src,
+})
 
 export default function Page() {
   return (

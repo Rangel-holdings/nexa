@@ -1,6 +1,13 @@
 import Link from 'next/link'
 import { shopLinks, treatmentLinks } from '../lib/site-data'
 
+const legalLinks = [
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms of Service' },
+  { href: '/telehealth-consent', label: 'Telehealth Consent' },
+  { href: '/supplement-terms', label: 'Supplement Terms' },
+]
+
 export default function SiteFooter() {
   return (
     <footer className="footer">
@@ -28,8 +35,15 @@ export default function SiteFooter() {
           <Link href="/medical-team">Medical Team</Link>
           <Link href="/check-eligibility">Check Eligibility</Link>
           <Link href="/patient-login">Patient Login</Link>
-          <Link href="/patient-center">Patient Center</Link>
           {shopLinks.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+        <div>
+          <h4>Legal</h4>
+          {legalLinks.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
             </Link>
@@ -38,7 +52,13 @@ export default function SiteFooter() {
       </div>
       <div className="container footer__bottom">
         <p>&copy; {new Date().getFullYear()} Nexa Rx. All rights reserved.</p>
-        <p className="footer__credit">Built by Ombaye for Rangel Holdings.</p>
+        <nav className="footer__legal-links" aria-label="Legal">
+          {legalLinks.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
         <p className="footer__legal">
           Nexa Rx is a telehealth platform connecting eligible patients with licensed clinicians and qualified U.S.
           pharmacy partners. Compounded medications are not FDA-approved as finished branded products. Prescription
