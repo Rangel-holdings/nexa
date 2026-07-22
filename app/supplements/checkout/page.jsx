@@ -2,6 +2,7 @@ import Link from 'next/link'
 import PageShell from '../../../components/PageShell'
 import BreadcrumbJsonLd from '../../../components/BreadcrumbJsonLd'
 import SiteImage from '../../../components/SiteImage'
+import MediaFrame from '../../../components/MediaFrame'
 import { media } from '../../../lib/media'
 
 export const metadata = {
@@ -38,22 +39,21 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          <div className="program-split__media" data-reveal="right">
-            <SiteImage
-              src={media.packaging.src}
-              alt={media.packaging.alt}
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, 50vw"
-            />
-          </div>
+          <MediaFrame
+            src={media.packaging.src}
+            alt={media.packaging.alt}
+            priority
+            caption="Review terms before payment"
+            sizes="(max-width: 640px) 100vw, 50vw"
+            reveal="right"
+          />
         </section>
         <section className="container pricing-grid">
           <article className="pricing-card" data-reveal="up">
             <div className="pricing-card__media">
               <SiteImage
-                src={media.heroProduct.src}
-                alt={media.heroProduct.alt}
+                src={media.shopProduct.src}
+                alt={media.shopProduct.alt}
                 fill
                 sizes="(max-width: 640px) 100vw, 420px"
                 quality={70}

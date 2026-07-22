@@ -30,7 +30,7 @@ export default function Page({ params }) {
     name: product.name,
     category: product.category,
     description: product.description,
-    image: `${siteUrl}${media.packaging.src}`,
+    image: `${siteUrl}${media.shopProduct.src}`,
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'USD',
@@ -56,13 +56,14 @@ export default function Page({ params }) {
           <p className="eyebrow">Dietary Supplement</p>
           <h1>{product.name}</h1>
           <p className="lede">{product.description}</p>
-          <div className="program-hero-media">
+          <div className="program-hero-media" data-reveal="up">
             <SiteImage
-              src={media.packaging.src}
+              src={media.shopProduct.src}
               alt={`${product.name} packaging`}
               fill
               priority
-              sizes="(max-width: 768px) 100vw, 720px"
+              sizes="(max-width: 640px) 100vw, 720px"
+              quality={72}
             />
           </div>
           <p className="supplements__disclaimer">

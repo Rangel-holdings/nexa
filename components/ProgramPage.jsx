@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import PageShell from './PageShell'
 import BreadcrumbJsonLd from './BreadcrumbJsonLd'
-import SiteImage from './SiteImage'
+import MediaFrame from './MediaFrame'
 import { programImages } from '../lib/media'
 
 export default function ProgramPage({ program }) {
@@ -39,9 +39,14 @@ export default function ProgramPage({ program }) {
             </div>
           </div>
           {image && (
-            <div className="program-split__media">
-              <SiteImage src={image.src} alt={image.alt} fill priority sizes="(max-width: 768px) 100vw, 520px" />
-            </div>
+            <MediaFrame
+              src={image.src}
+              alt={image.alt}
+              priority
+              caption={program.navLabel}
+              sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 520px"
+              reveal="right"
+            />
           )}
         </section>
 

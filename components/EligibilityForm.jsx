@@ -112,7 +112,7 @@ export default function EligibilityForm() {
 
       <div className="eligibility-layout__media" data-reveal="right" aria-hidden="true">
         <SiteImage
-          src={media.heroLifestyle.src}
+          src={media.eligibilitySide.src}
           alt=""
           fill
           priority

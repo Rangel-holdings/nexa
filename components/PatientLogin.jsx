@@ -26,11 +26,12 @@ export default function PatientLogin() {
     <div className="auth">
       <div className="auth__visual">
         <SiteImage
-          src={media.heroLifestyle.src}
-          alt={media.heroLifestyle.alt}
+          src={media.loginSide.src}
+          alt={media.loginSide.alt}
           fill
           priority
           sizes="(max-width: 767px) 0px, 50vw"
+          quality={70}
         />
         <div className="auth__overlay">
           <p className="logo__word logo--on-dark">

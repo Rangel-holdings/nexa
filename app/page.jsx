@@ -2,6 +2,7 @@ import Link from 'next/link'
 import PageShell from '../components/PageShell'
 import FaqAccordion from '../components/FaqAccordion'
 import SiteImage from '../components/SiteImage'
+import MediaFrame from '../components/MediaFrame'
 import { careSteps, programs } from '../lib/site-data'
 import { media, programImages } from '../lib/media'
 
@@ -165,13 +166,14 @@ export default function HomePage() {
 
         <section className="supplements" id="shop">
           <div className="container supplements__grid">
-            <div className="supplements__media">
-              <SiteImage
+            <div className="supplements__media" data-reveal="left">
+              <MediaFrame
                 src={media.heroProduct.src}
                 alt={media.heroProduct.alt}
-                width={media.heroProduct.width}
-                height={media.heroProduct.height}
+                ratio="1 / 1"
+                caption="Non-prescription support"
                 sizes="(max-width: 768px) 100vw, 480px"
+                className="media-frame--flush"
               />
             </div>
             <div className="supplements__inner">
@@ -228,9 +230,9 @@ export default function HomePage() {
                 <SiteImage
                   src={media.packaging.src}
                   alt={media.packaging.alt}
-                  width={media.packaging.width}
-                  height={media.packaging.height}
+                  fill
                   sizes="(max-width: 768px) 100vw, 240px"
+                  quality={70}
                 />
               </div>
             </div>
@@ -247,13 +249,14 @@ export default function HomePage() {
                 Check Eligibility
               </Link>
             </div>
-            <div className="how__visual">
-              <SiteImage
+            <div className="how__visual" data-reveal="up">
+              <MediaFrame
                 src={media.careJourney.src}
                 alt={media.careJourney.alt}
-                width={media.careJourney.width}
-                height={media.careJourney.height}
+                ratio="16 / 9"
+                caption="Your care path"
                 sizes="(max-width: 880px) 100vw, 880px"
+                className="media-frame--flush"
               />
             </div>
             <div className="steps">
@@ -270,13 +273,14 @@ export default function HomePage() {
 
         <section className="start-now">
           <div className="container start-now__grid">
-            <div className="start-now__media">
-              <SiteImage
+            <div className="start-now__media" data-reveal="left">
+              <MediaFrame
                 src={media.careStarts.src}
                 alt={media.careStarts.alt}
-                width={media.careStarts.width}
-                height={media.careStarts.height}
+                ratio="16 / 10"
+                caption="Care starts with clarity"
                 sizes="(max-width: 768px) 100vw, 520px"
+                className="media-frame--flush"
               />
             </div>
             <div className="start-now__copy">
@@ -314,13 +318,14 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="brand-band__visual">
-              <SiteImage
-                src={media.heroLifestyle.src}
-                alt={media.heroLifestyle.alt}
-                width={media.heroLifestyle.width}
-                height={media.heroLifestyle.height}
+            <div className="brand-band__visual" data-reveal="right">
+              <MediaFrame
+                src={media.brandLifestyle.src}
+                alt={media.brandLifestyle.alt}
+                tone="dark"
+                caption="Modern clinical wellness"
                 sizes="(max-width: 768px) 100vw, 520px"
+                className="media-frame--flush"
               />
             </div>
           </div>

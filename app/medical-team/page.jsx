@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import PageShell from '../../components/PageShell'
 import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
-import SiteImage from '../../components/SiteImage'
+import MediaFrame from '../../components/MediaFrame'
 import { media } from '../../lib/media'
 
 export const metadata = {
@@ -32,15 +32,14 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          <div className="program-split__media">
-            <SiteImage
-              src={media.heroLifestyle.src}
-              alt={media.heroLifestyle.alt}
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 520px"
-            />
-          </div>
+          <MediaFrame
+            src={media.medicalTeamHero.src}
+            alt={media.medicalTeamHero.alt}
+            priority
+            caption="Licensed clinical care"
+            sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 520px"
+            reveal="right"
+          />
         </section>
 
         <section className="container proof__metrics" style={{ marginTop: '2rem' }}>

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import BreadcrumbJsonLd from './BreadcrumbJsonLd'
 import PageShell from './PageShell'
 import SiteImage from './SiteImage'
+import MediaFrame from './MediaFrame'
 import { supplements } from '../lib/site-data'
 import { media } from '../lib/media'
 
@@ -33,7 +34,7 @@ const pageCopy = {
   'subscribe-and-save': {
     title: 'Subscribe & Save',
     body: 'Save on recurring supplement orders. Subscription frequency, renewal amount, and cancellation method are shown before payment.',
-    image: media.packaging,
+    image: media.shopProduct,
   },
   'order-support': {
     title: 'Order Support',
@@ -69,15 +70,14 @@ export default function ShopSubPage({ params }) {
               </Link>
             </div>
           </div>
-          <div className="program-split__media" data-reveal="right">
-            <SiteImage
-              src={copy.image.src}
-              alt={copy.image.alt}
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 520px"
-            />
-          </div>
+          <MediaFrame
+            src={copy.image.src}
+            alt={copy.image.alt}
+            priority
+            caption="Shop"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 520px"
+            reveal="right"
+          />
         </section>
 
         {params.slug === 'bundles' && (
@@ -91,7 +91,7 @@ export default function ShopSubPage({ params }) {
               >
                 <div className="treat-card__media">
                   <SiteImage
-                    src={media.packaging.src}
+                    src={media.shopProduct.src}
                     alt={`${item.name} packaging`}
                     fill
                     sizes="(max-width: 640px) 100vw, 280px"
@@ -127,7 +127,7 @@ export default function ShopSubPage({ params }) {
               >
                 <div className="treat-card__media">
                   <SiteImage
-                    src={media.heroProduct.src}
+                    src={media.shopProduct.src}
                     alt={item.name}
                     fill
                     sizes="(max-width: 640px) 100vw, 280px"

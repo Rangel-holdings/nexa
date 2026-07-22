@@ -2,6 +2,7 @@ import Link from 'next/link'
 import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 import PageShell from '../../components/PageShell'
 import SiteImage from '../../components/SiteImage'
+import MediaFrame from '../../components/MediaFrame'
 import { careSteps } from '../../lib/site-data'
 import { media, howItWorksStepImages } from '../../lib/media'
 
@@ -30,16 +31,15 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          <div className="program-split__media" data-reveal="right">
-            <SiteImage
-              src={media.howItWorksHero.src}
-              alt={media.howItWorksHero.alt}
-              fill
-              priority
-              quality={74}
-              sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 520px"
-            />
-          </div>
+          <MediaFrame
+            src={media.howItWorksHero.src}
+            alt={media.howItWorksHero.alt}
+            priority
+            quality={74}
+            caption="Step-by-step care"
+            sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 520px"
+            reveal="right"
+          />
         </section>
 
         <section className="container how-steps-section">

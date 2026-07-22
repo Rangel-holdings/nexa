@@ -2,6 +2,7 @@ import Link from 'next/link'
 import PageShell from '../../components/PageShell'
 import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 import SiteImage from '../../components/SiteImage'
+import MediaFrame from '../../components/MediaFrame'
 import { supplements } from '../../lib/site-data'
 import { media } from '../../lib/media'
 
@@ -32,15 +33,14 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          <div className="program-split__media" data-reveal="right">
-            <SiteImage
-              src={media.heroProduct.src}
-              alt={media.heroProduct.alt}
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 520px"
-            />
-          </div>
+          <MediaFrame
+            src={media.heroProduct.src}
+            alt={media.heroProduct.alt}
+            priority
+            caption="Dietary supplements"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 520px"
+            reveal="right"
+          />
         </section>
         <section className="container treat-grid">
           {supplements.map((item, index) => (
@@ -52,7 +52,7 @@ export default function Page() {
             >
               <div className="treat-card__media">
                 <SiteImage
-                  src={media.packaging.src}
+                  src={media.shopProduct.src}
                   alt={`${item.name} packaging`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
