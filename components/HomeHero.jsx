@@ -79,7 +79,9 @@ export default function HomeHero() {
             <span className="pill">Featured Program</span>
             <p className="hero-feature__cat">Medical Weight Loss</p>
             <h2>Clinician-Guided Weight Management</h2>
-            <p>Personalized treatment options, ongoing clinical support, and discreet delivery.</p>
+            <p className="hero-feature__blurb">
+              Personalized treatment options, ongoing clinical support, and discreet delivery.
+            </p>
             <div className="hero-feature__actions">
               <Link href="/medical-weight-loss">View Details</Link>
               <Link href="/check-eligibility" className="btn btn--primary btn--sm">
