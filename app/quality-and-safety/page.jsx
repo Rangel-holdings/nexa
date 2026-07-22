@@ -82,7 +82,14 @@ export default function Page() {
 
         <section className="container" data-reveal="up">
           <ul className="check-list">
-            <li>Prescriptions are sent to appropriately licensed U.S. pharmacies.</li>
+            <li>
+              Partner pharmacies operate under strict FDA regulations (503A or 503B) and use active pharmaceutical
+              ingredients (APIs) sourced from FDA-registered facilities.
+            </li>
+            <li>
+              Our clinicians prescribe FDA-approved medications and, when clinically appropriate, compounded therapies
+              prepared by licensed U.S. pharmacies.
+            </li>
             <li>Compounded medications are not FDA-approved as finished branded products.</li>
             <li>Medical intake is collected in a secure clinical portal, not the public marketing website.</li>
             <li>Health-related selections and patient data should not be sent to ad platforms.</li>
