@@ -14,7 +14,7 @@ export default function HomeHero() {
           <h1 className="hero-anim" style={{ '--hero-delay': '80ms' }}>
             Your care.
             <br />
-            <em>Your way.</em>
+            Your way.
           </h1>
           <p className="lede hero-anim" style={{ '--hero-delay': '150ms' }}>
             Connect online with a licensed clinician for medical weight management, hormone health, and select
