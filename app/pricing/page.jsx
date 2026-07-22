@@ -1,13 +1,18 @@
 import Link from 'next/link'
-import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 import PageShell from '../../components/PageShell'
+import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
+import PricingModel from '../../components/PricingModel'
+import PricingBeforePay from '../../components/PricingBeforePay'
+import PricingComparison from '../../components/PricingComparison'
 import PricingGrid from '../../components/PricingGrid'
+import StateAvailability from '../../components/StateAvailability'
 import MediaFrame from '../../components/MediaFrame'
 import { media } from '../../lib/media'
 
 export const metadata = {
   title: 'Pricing | Nexa Rx',
-  description: 'Transparent pricing for every Nexa Rx program, including recurring terms, labs, support, and limitations.',
+  description:
+    'Transparent telehealth pricing with $0 to start, itemized enrollment summaries, and program-specific inclusions before you pay.',
   alternates: { canonical: '/pricing' },
 }
 
@@ -19,19 +24,23 @@ export default function Page() {
         <section className="container program-split">
           <div className="program-split__copy">
             <p className="eyebrow">Clear Pricing</p>
-            <h1>Understand your program costs.</h1>
+            <h1>$0 to start. Itemized quote before you pay.</h1>
             <p className="lede">
-              Transparent pricing with clear inclusions before enrollment. Review charges, recurring terms, and
-              limitations for each care program.
+              Review due today, recurring terms, consultation fees, prescription costs, labs, shipping, and cancellation
+              policy in one enrollment summary — before confirming care.
             </p>
             <div className="hero__cta">
               <Link className="btn btn--primary btn--lg" href="/check-eligibility">
-                Check Eligibility
+                Get your itemized quote
               </Link>
               <Link className="btn btn--outline btn--lg" href="/#treatments">
                 View Treatments
               </Link>
             </div>
+            <p className="hero__disclosure">
+              Prescription treatment is not guaranteed. You are charged for ongoing program care only after you review
+              and accept your enrollment summary.
+            </p>
           </div>
           <MediaFrame
             src={media.pricingHero.src}
@@ -43,10 +52,15 @@ export default function Page() {
             reveal="right"
           />
         </section>
+
+        <PricingModel />
+        <PricingBeforePay />
+        <PricingComparison />
         <PricingGrid />
+        <StateAvailability compact />
         <p className="container hero__stats-note" style={{ marginTop: '1.25rem', marginBottom: '2rem' }}>
-          *Peptide therapy pricing is confirmed before enrollment based on prescribed therapy, dosage, pharmacy,
-          shipping, and state. Prescription treatment is not guaranteed.
+          *Clinical evaluation is included when prescribed. If you are not eligible, ongoing program billing does not
+          begin. Monthly totals vary by therapy, dosage, pharmacy, shipping, and state.
         </p>
       </main>
     </PageShell>

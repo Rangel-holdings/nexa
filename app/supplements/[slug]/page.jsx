@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import PageShell from '../../../components/PageShell'
 import BreadcrumbJsonLd from '../../../components/BreadcrumbJsonLd'
+import SupplementFactsPanel from '../../../components/SupplementFactsPanel'
 import SiteImage from '../../../components/SiteImage'
 import { supplements, siteUrl } from '../../../lib/site-data'
 import { media } from '../../../lib/media'
@@ -71,8 +72,12 @@ export default function Page({ params }) {
             to diagnose, treat, cure, or prevent any disease.
           </p>
         </section>
-        <section className="container pricing-grid">
+
+        <section className="container supplement-pdp-grid">
           <article className="pricing-card">
+            <div className="pricing-card__header">
+              <h2>Pricing &amp; purchase options</h2>
+            </div>
             <div className="pricing-card__row">
               <span className="label">One-time price</span>
               <span className="value">{product.oneTimePrice}</span>
@@ -86,29 +91,70 @@ export default function Page({ params }) {
               <span className="value">{product.renewal}</span>
             </div>
             <div className="pricing-card__row">
-              <span className="label">Supplement facts</span>
-              <span className="value">{product.facts.join(' · ')}</span>
-            </div>
-            <div className="pricing-card__row">
               <span className="label">Cancellation method</span>
               <span className="value">Cancel anytime in Order Support or before the next renewal date.</span>
             </div>
             <div className="pricing-card__row">
-              <span className="label">Purchase options</span>
-              <span className="value">One-time purchase or Subscribe &amp; Save available before payment.</span>
+              <span className="label">Return policy</span>
+              <span className="value">{product.returnPolicy}</span>
             </div>
             <div className="pricing-card__row">
-              <span className="label">Warnings and allergens</span>
-              <span className="value">Shown on label and final checkout before payment.</span>
-            </div>
-            <div className="pricing-card__row">
-              <span className="label">Manufacturer/distributor</span>
-              <span className="value">Nexa Rx partner manufacturer details shown on product label.</span>
+              <span className="label">Shipping terms</span>
+              <span className="value">{product.shippingTerms}</span>
             </div>
             <div className="pricing-card__footer">
               <Link href={`/supplements/checkout?product=${product.slug}`} className="btn btn--primary btn--lg">
                 Continue to Checkout
               </Link>
+            </div>
+          </article>
+
+          <article className="pricing-card">
+            <div className="pricing-card__header">
+              <h2>Product information</h2>
+            </div>
+            <SupplementFactsPanel product={product} />
+            <div className="pricing-card__row">
+              <span className="label">Directions</span>
+              <span className="value">{product.directions}</span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Warnings</span>
+              <span className="value">{product.warnings}</span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Allergens</span>
+              <span className="value">{product.allergens}</span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Storage</span>
+              <span className="value">{product.storage}</span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Age restriction</span>
+              <span className="value">{product.ageRestriction}</span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Manufacturer</span>
+              <span className="value">
+                {product.manufacturer.name}, {product.manufacturer.address}
+              </span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Distributor</span>
+              <span className="value">
+                {product.distributor.name}, {product.distributor.address}
+              </span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Product questions</span>
+              <span className="value">{product.contact.questions}</span>
+            </div>
+            <div className="pricing-card__row">
+              <span className="label">Adverse event reporting</span>
+              <span className="value">
+                {product.contact.adverseEvents} · {product.contact.phone}
+              </span>
             </div>
           </article>
         </section>

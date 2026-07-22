@@ -145,8 +145,8 @@ export default function HomePage() {
                       <h3>{program.title}</h3>
                       <p className="treat-card__desc">{program.description}</p>
                       <p className="treat-card__price">{program.price}</p>
-                      <p className={`treat-card__price-note ${program.priceNote ? '' : 'is-empty'}`}>
-                        {program.priceNote || '\u00A0'}
+                      <p className={`treat-card__price-note ${program.priceSubline ? '' : 'is-empty'}`}>
+                        {program.priceSubline || program.priceNote || '\u00A0'}
                       </p>
                       <div className="treat-card__actions">
                         <Link href={`/${program.slug}`}>
@@ -204,9 +204,9 @@ export default function HomePage() {
               </p>
               <ul className="check-list">
                 <li>Prescriptions sent to appropriately licensed U.S. pharmacies</li>
-                <li>Sterility standards (USP-aligned pharmacy partners)</li>
-                <li>Endotoxin screening where applicable</li>
-                <li>Medical intake collected in secure clinical portal only</li>
+                <li>Pricing and recurring terms shown before enrollment</li>
+                <li>Medical intake collected in a secure clinical portal only</li>
+                <li>Dietary supplements sold separately from prescription care</li>
               </ul>
               <p className="quality__supplement-note">
                 Dietary supplements are non-prescription products and are sold separately from medical treatment. Product
@@ -304,10 +304,10 @@ export default function HomePage() {
           <div className="container brand-band__grid">
             <div>
               <p className="eyebrow eyebrow--teal">Care that connects.</p>
-              <h2>Built for modern clinical wellness.</h2>
+              <h2>Personal, clear, and clinically guided.</h2>
               <p>
-                Clear pricing, licensed clinicians, and discreet pharmacy fulfillment—so you can focus on your health
-                goals with confidence.
+                Licensed clinicians, transparent pricing, and qualified U.S. pharmacy fulfillment — so you can
+                understand your options before treatment begins.
               </p>
               <div className="brand-actions">
                 <Link href="/check-eligibility" className="brand-action">
@@ -323,7 +323,7 @@ export default function HomePage() {
                 src={media.brandLifestyle.src}
                 alt={media.brandLifestyle.alt}
                 tone="dark"
-                caption="Modern clinical wellness"
+                caption="Clinically guided care"
                 sizes="(max-width: 768px) 100vw, 520px"
                 className="media-frame--flush"
               />

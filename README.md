@@ -78,6 +78,7 @@ Open [http://localhost:3000](http://localhost:3000).
 - Organization, Breadcrumb, and Product JSON-LD where applicable
 - Dynamic `robots.txt` and `sitemap.xml`
 - Preview environments set to `noindex`
+- Optional preview password via `PREVIEW_PASSWORD` (see Deploy)
 - Public lead form limited to program interest, state, and contact details
 - Medical intake belongs in the secure clinical portal (not the marketing site)
 
@@ -87,6 +88,7 @@ Open [http://localhost:3000](http://localhost:3000).
 2. Framework: **Next.js**
 3. Build command: `npm run build`
 4. Keep preview deployments noindexed until claims, pricing, and clinical pathways are approved
+5. Set `PREVIEW_PASSWORD` in Vercel for preview deployments to enable HTTP Basic Auth (user: `nexa`)
 
 ## Project layout
 

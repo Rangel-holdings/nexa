@@ -1,10 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { programs } from '../lib/site-data'
+import { getProgramAvailabilityStatus, programs } from '../lib/site-data'
 import { programImages, media } from '../lib/media'
 import SiteImage from './SiteImage'
+
+const availabilityMessages = {
+  available: 'This program is currently available in your state.',
+  review: 'This program may require additional clinical review in your state. Continue to confirm eligibility.',
+  unavailable: 'This program is not currently available in your state. Choose another program or contact support.',
+}
 
 export default function EligibilityForm() {
   const router = useRouter()
@@ -17,12 +23,28 @@ export default function EligibilityForm() {
   })
   const [error, setError] = useState('')
 
+  const selectedProgram = useMemo(
+    () => programs.find((program) => program.title === form.program || program.navLabel === form.program),
+    [form.program]
+  )
+
+  const availabilityStatus = useMemo(() => {
+    if (!selectedProgram || !form.state.trim()) return null
+    return getProgramAvailabilityStatus(selectedProgram.slug, form.state)
+  }, [selectedProgram, form.state])
+
   const submit = (e) => {
     e.preventDefault()
     if (!form.program || !form.state || !form.name.trim() || !form.email.trim()) {
       setError('Please complete program, state, name, and email.')
       return
     }
+
+    if (selectedProgram && availabilityStatus === 'unavailable') {
+      setError(availabilityMessages.unavailable)
+      return
+    }
+
     localStorage.setItem('nexa_intake_draft_v2', JSON.stringify({ ...form, at: new Date().toISOString() }))
     router.push('/patient-center')
   }
@@ -56,6 +78,7 @@ export default function EligibilityForm() {
                   <span className="pill">{program.category}</span>
                   <strong>{program.navLabel}</strong>
                   <em>{program.price}</em>
+                  <span>{program.priceSubline}</span>
                 </span>
               </button>
             )
@@ -79,9 +102,19 @@ export default function EligibilityForm() {
             </select>
           </label>
           <label>
-            State
-            <input value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value })} placeholder="Florida" />
+            State (2-letter code)
+            <input
+              value={form.state}
+              onChange={(e) => setForm({ ...form, state: e.target.value.toUpperCase() })}
+              placeholder="FL"
+              maxLength={2}
+            />
           </label>
+          {availabilityStatus && (
+            <p className={`availability-note availability-note--${availabilityStatus}`}>
+              {availabilityMessages[availabilityStatus]}
+            </p>
+          )}
           <label>
             Full name
             <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Alex Rivera" />

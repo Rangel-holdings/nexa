@@ -2,6 +2,7 @@ import Link from 'next/link'
 import PageShell from '../../components/PageShell'
 import BreadcrumbJsonLd from '../../components/BreadcrumbJsonLd'
 import MediaFrame from '../../components/MediaFrame'
+import { medicalTeamRoles } from '../../lib/site-data'
 import { media } from '../../lib/media'
 
 export const metadata = {
@@ -28,7 +29,7 @@ export default function Page() {
                 Check Eligibility
               </Link>
               <Link className="btn btn--outline btn--lg" href="/how-it-works">
-                View Details
+                How It Works
               </Link>
             </div>
           </div>
@@ -42,23 +43,20 @@ export default function Page() {
           />
         </section>
 
-        <section className="container proof__metrics" style={{ marginTop: '2rem' }}>
-          <div>
-            <strong>Clinical leadership</strong>
-            <span>Licensed clinician oversight for evaluation and care decisions.</span>
-          </div>
-          <div>
-            <strong>Licensure &amp; state rules</strong>
-            <span>Care availability varies by clinician licensure and state law.</span>
-          </div>
-          <div>
-            <strong>Evidence-led decisions</strong>
-            <span>Prescription treatment is never guaranteed and is based on evaluation.</span>
-          </div>
-          <div>
-            <strong>Ongoing support</strong>
-            <span>Follow-up cadence, messaging, and refill support are program-specific.</span>
-          </div>
+        <section className="container program-detail-grid">
+          {medicalTeamRoles.map((role) => (
+            <article key={role.title} className="program-detail-card">
+              <h2>{role.title}</h2>
+              <p>{role.text}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="container quality__supplement-note" style={{ marginTop: '2rem' }}>
+          <p>
+            Prescription treatment is not guaranteed. Eligibility and treatment decisions are made solely by a licensed
+            clinician based on your medical evaluation. Nexa Rx is a care platform — not a pharmacy.
+          </p>
         </section>
       </main>
     </PageShell>

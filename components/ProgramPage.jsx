@@ -3,10 +3,12 @@ import PageShell from './PageShell'
 import BreadcrumbJsonLd from './BreadcrumbJsonLd'
 import MediaFrame from './MediaFrame'
 import { programImages } from '../lib/media'
+import { stateAvailabilityBySlug } from '../lib/site-data'
 
 export default function ProgramPage({ program }) {
   const isPeptide = program.slug === 'peptide-therapy'
   const image = programImages[program.slug]
+  const availability = stateAvailabilityBySlug[program.slug]
 
   return (
     <PageShell stickyMode="eligibility">
@@ -24,6 +26,7 @@ export default function ProgramPage({ program }) {
             <h1>{program.title}</h1>
             <p className="lede">{program.description}</p>
             <p className="treat-card__price">{program.price}</p>
+            {program.priceSubline && <p className="treat-card__price-note">{program.priceSubline}</p>}
             {program.priceNote && <p className="treat-card__price-note">{program.priceNote}</p>}
             <p className="hero__disclosure">
               Prescription treatment is not guaranteed. Eligibility and treatment decisions are made by a licensed
@@ -33,8 +36,8 @@ export default function ProgramPage({ program }) {
               <Link className="btn btn--primary btn--lg" href="/check-eligibility">
                 Check Eligibility
               </Link>
-              <Link className="btn btn--outline btn--lg" href="/#treatments">
-                View Treatments
+              <Link className="btn btn--outline btn--lg" href="/pricing">
+                View Pricing
               </Link>
             </div>
           </div>
@@ -50,13 +53,56 @@ export default function ProgramPage({ program }) {
           )}
         </section>
 
-        <section className="container">
-          <ul className="check-list">
-            {program.highlights.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          {isPeptide && (
+        <section className="container program-detail-grid">
+          <article className="program-detail-card">
+            <p className="eyebrow">What&apos;s included</p>
+            <h2>Program highlights</h2>
+            <ul className="check-list">
+              {program.highlights.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="program-detail-card">
+            <p className="eyebrow">Ongoing care</p>
+            <h2>Follow-up, messaging, and refills</h2>
+            <ul className="check-list">
+              <li>{program.ongoingCare.followUp}</li>
+              <li>{program.ongoingCare.refills}</li>
+              <li>{program.ongoingCare.labs}</li>
+              <li>{program.ongoingCare.messaging}</li>
+            </ul>
+          </article>
+
+          {availability && (
+            <article className="program-detail-card">
+              <p className="eyebrow">State availability</p>
+              <h2>Where this program is offered</h2>
+              <p className="lede">{availability.summary}</p>
+              <ul className="state-card__groups">
+                {availability.groups.map((group) => (
+                  <li key={group.status}>
+                    <strong>
+                      {group.status === 'available'
+                        ? 'Available'
+                        : group.status === 'review'
+                          ? 'Clinical review required'
+                          : 'Not currently available'}
+                    </strong>
+                    <span>{group.states.join(', ')}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/pricing" className="btn btn--outline btn--sm" style={{ marginTop: '1rem' }}>
+                View full state matrix
+              </Link>
+            </article>
+          )}
+        </section>
+
+        {isPeptide && (
+          <section className="container">
             <div className="quality__supplement-note">
               <p>
                 Nexa Rx offers prescription therapies for eligible patients and does not sell research-use-only products.
@@ -67,8 +113,8 @@ export default function ProgramPage({ program }) {
                 outsourcing facility. Your clinician will explain the applicable channel before enrollment.
               </p>
             </div>
-          )}
-        </section>
+          </section>
+        )}
       </main>
     </PageShell>
   )
