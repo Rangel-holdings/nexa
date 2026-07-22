@@ -37,6 +37,7 @@ export default function Page() {
             src={media.pricingHero.src}
             alt={media.pricingHero.alt}
             priority
+            quality={74}
             caption="Clear costs before enrollment"
             sizes="(max-width: 640px) 100vw, (max-width: 960px) 90vw, 520px"
             reveal="right"

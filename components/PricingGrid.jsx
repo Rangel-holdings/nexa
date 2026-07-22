@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { pricingPrograms } from '../lib/site-data'
-import { programImages } from '../lib/media'
+import { media } from '../lib/media'
 import SiteImage from './SiteImage'
 
 const imageByTitle = {
-  'Weight Management Program': programImages['medical-weight-loss'],
-  "Men's Hormone Health": programImages['mens-hormone-health'],
-  "Women's Hormone Health": programImages['womens-hormone-health'],
-  'Peptide Therapy': programImages['peptide-therapy'],
+  'Weight Management Program': media.pricingWeight,
+  "Men's Hormone Health": media.pricingMens,
+  "Women's Hormone Health": media.pricingWomens,
+  'Peptide Therapy': media.pricingPeptides,
 }
 
 export default function PricingGrid() {
