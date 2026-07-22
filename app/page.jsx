@@ -272,8 +272,34 @@ export default function HomePage() {
           </div>
         </section>
 
-        <FaqAccordion />
+        <section className="section shop-home">
+          <div className="container start-now__grid">
+            <div className="start-now__copy">
+              <p className="eyebrow">NON-PRESCRIPTION SUPPORT</p>
+              <h2>Support your health between visits.</h2>
+              <hr className="start-now__rule" />
+              <p>Shop a focused collection of dietary supplements for everyday wellness. No prescription required.</p>
+              <Link href="/supplements" className="btn btn--primary btn--lg btn--square">
+                Shop Supplements <span aria-hidden="true">→</span>
+              </Link>
+              <p className="supplements__disclaimer" style={{ marginTop: '1.5rem' }}>
+                These statements have not been evaluated by the Food and Drug Administration. This product is not
+                intended to diagnose, treat, cure, or prevent any disease.
+              </p>
+            </div>
+            <div className="start-now__media" data-reveal="right">
+              <MediaFrame
+                src={media.shopProduct.src}
+                alt="Dietary supplements collection"
+                ratio="16 / 10"
+                sizes="(max-width: 768px) 100vw, 520px"
+                className="media-frame--flush"
+              />
+            </div>
+          </div>
+        </section>
 
+        <FaqAccordion />
         <section className="cta">
           <div className="container cta__inner">
             <p className="eyebrow eyebrow--teal">Your health, prioritized.</p>
