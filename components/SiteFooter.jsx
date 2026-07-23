@@ -12,13 +12,13 @@ export default function SiteFooter() {
   return (
     <footer className="footer">
       <div className="container footer__grid">
-        <div>
+        <div className="footer__brand-col">
           <p className="logo__word">
             Nexa <span className="logo__rx">Rx</span>
           </p>
           <p className="footer__tag">Licensed clinical care. Clear pricing. Qualified U.S. pharmacy fulfillment.</p>
         </div>
-        <div>
+        <div className="footer__col">
           <h4>Care</h4>
           {treatmentLinks.map((item) => (
             <Link key={item.href} href={item.href}>
@@ -30,7 +30,7 @@ export default function SiteFooter() {
           <Link href="/quality-and-safety">Quality &amp; Safety</Link>
           <Link href="/faq">FAQ</Link>
         </div>
-        <div>
+        <div className="footer__col">
           <h4>Shop</h4>
           {shopLinks.map((item) => (
             <Link key={item.href} href={item.href}>
@@ -38,7 +38,7 @@ export default function SiteFooter() {
             </Link>
           ))}
         </div>
-        <div>
+        <div className="footer__col">
           <h4>Company</h4>
           <Link href="/medical-team">Medical Team</Link>
           <Link href="/check-eligibility">Check Eligibility</Link>
