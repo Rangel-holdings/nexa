@@ -71,6 +71,12 @@ export default function ShopSubPage({ params }) {
                   key={item.slug}
                   className={`bundle-card ${shape}`}
                   data-reveal="up"
+                  data-product-card="true"
+                  data-product-slug={item.slug}
+                  data-product-name={`${item.name} Bundle`}
+                  data-product-price={`${item.subscribePrice}/mo`}
+                  data-product-image={image.src}
+                  data-product-alt={image.alt}
                   style={{ '--delay': `${index * 70}ms` }}
                 >
                   <div className="bundle-card__media">
@@ -109,6 +115,12 @@ export default function ShopSubPage({ params }) {
                 key={item.slug}
                 className="treat-card"
                 data-reveal="up"
+                data-product-card="true"
+                data-product-slug={item.slug}
+                data-product-name={item.name}
+                data-product-price={`${item.subscribePrice}/mo`}
+                data-product-image={image.src}
+                data-product-alt={image.alt}
                 style={{ '--delay': `${index * 70}ms` }}
               >
                 <div className="treat-card__media">

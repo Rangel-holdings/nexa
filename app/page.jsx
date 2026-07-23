@@ -67,6 +67,14 @@ export default function HomePage() {
                     key={program.slug}
                     className="treat-card"
                     data-reveal="up"
+                    data-product-card="true"
+                    data-product-slug={program.slug}
+                    data-product-name={program.title}
+                    data-product-price={program.price}
+                    data-product-image={image?.src || ''}
+                    data-product-alt={image?.alt || program.title}
+                    data-product-checkout="/check-eligibility"
+                    data-product-details={`/${program.slug}`}
                     style={{ '--delay': `${index * 70}ms` }}
                   >
                     {image && (
