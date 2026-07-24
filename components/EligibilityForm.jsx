@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { getProgramAvailabilityStatus, programs } from '../lib/site-data'
 import { programImages, media } from '../lib/media'
@@ -14,6 +14,7 @@ const availabilityMessages = {
 
 export default function EligibilityForm() {
   const router = useRouter()
+  const formRef = useRef(null)
   const [form, setForm] = useState({
     program: '',
     state: '',
@@ -22,6 +23,38 @@ export default function EligibilityForm() {
     phone: '',
   })
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const progParam = params.get('program')
+      if (progParam) {
+        const found = programs.find(
+          (p) =>
+            p.slug === progParam ||
+            p.title.toLowerCase().includes(progParam.toLowerCase()) ||
+            p.navLabel.toLowerCase().includes(progParam.toLowerCase())
+        )
+        if (found) {
+          setForm((prev) => ({ ...prev, program: found.title }))
+          setTimeout(() => {
+            formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }, 350)
+        }
+      }
+    }
+  }, [])
+
+  const handleSelectProgram = (programTitle) => {
+    setForm((prev) => ({ ...prev, program: programTitle }))
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const stateInput = formRef.current.querySelector('input[placeholder="FL"]')
+      if (stateInput) {
+        setTimeout(() => stateInput.focus(), 400)
+      }
+    }
+  }
 
   const selectedProgram = useMemo(
     () => programs.find((program) => program.title === form.program || program.navLabel === form.program),
@@ -67,7 +100,7 @@ export default function EligibilityForm() {
                 key={program.slug}
                 type="button"
                 className={`flow-treat-card ${selected ? 'is-selected' : ''}`}
-                onClick={() => setForm({ ...form, program: program.title })}
+                onClick={() => handleSelectProgram(program.title)}
               >
                 <div className="flow-treat-card__media">
                   {image && (
@@ -101,7 +134,7 @@ export default function EligibilityForm() {
           })}
         </div>
 
-        <form className="flow-form" onSubmit={submit} style={{ marginTop: '1rem', textAlign: 'left' }}>
+        <form ref={formRef} className="flow-form" onSubmit={submit} style={{ marginTop: '1rem', textAlign: 'left', scrollMarginTop: '120px' }}>
           <label>
             Care program
             <select
