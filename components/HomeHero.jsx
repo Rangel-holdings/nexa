@@ -64,7 +64,7 @@ export default function HomeHero() {
                   </svg>
                 </div>
                 <div className="hero__stat-info">
-                  <strong>Self-Pay</strong>
+                  <strong>Self-Pay Care</strong>
                   <span>No insurance needed</span>
                 </div>
               </li>
