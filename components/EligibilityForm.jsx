@@ -58,28 +58,44 @@ export default function EligibilityForm() {
           Select your program, state, and contact details. Medical intake happens in the secure clinical portal.
         </p>
 
-        <div className="flow-treats" style={{ marginTop: '1.25rem', marginBottom: '1.5rem' }}>
+        <div className="flow-treats-grid" style={{ marginTop: '1.5rem', marginBottom: '1.75rem' }}>
           {programs.map((program) => {
             const image = programImages[program.slug]
-            const selected = form.program === program.title
+            const selected = form.program === program.title || form.program === program.navLabel
             return (
               <button
                 key={program.slug}
                 type="button"
-                className={`flow-treat ${selected ? 'is-active' : ''}`}
+                className={`flow-treat-card ${selected ? 'is-selected' : ''}`}
                 onClick={() => setForm({ ...form, program: program.title })}
               >
-                <span
-                  className="flow-treat__img"
-                  style={image ? { backgroundImage: `url(${image.src})` } : undefined}
-                  aria-hidden="true"
-                />
-                <span className="flow-treat__body">
-                  <span className="pill">{program.category}</span>
-                  <strong>{program.navLabel}</strong>
-                  <em>{program.price}</em>
-                  <span>{program.priceSubline}</span>
-                </span>
+                <div className="flow-treat-card__media">
+                  {image && (
+                    <SiteImage
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 300px"
+                      quality={75}
+                    />
+                  )}
+                  {selected && (
+                    <span className="flow-treat-card__selected-badge">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      Selected
+                    </span>
+                  )}
+                </div>
+                <div className="flow-treat-card__content">
+                  <span className="flow-treat-card__cat">{program.category}</span>
+                  <h3 className="flow-treat-card__title">{program.navLabel}</h3>
+                  <div className="flow-treat-card__pricing">
+                    <span className="flow-treat-card__price">{program.price}</span>
+                    <span className="flow-treat-card__subline">{program.priceSubline}</span>
+                  </div>
+                </div>
               </button>
             )
           })}
