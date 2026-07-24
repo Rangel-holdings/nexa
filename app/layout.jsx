@@ -47,8 +47,11 @@ export const metadata = {
     images: ['/images/hero-home-desktop.webp'],
   },
   icons: {
-    icon: '/favicon.svg',
-    apple: '/apple-touch-icon.svg',
+    icon: [
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
   authors: [{ name: 'Ombaye' }],
   creator: 'Ombaye',

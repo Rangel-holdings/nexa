@@ -20,9 +20,15 @@ export default function SiteFooter() {
       <footer className="footer">
       <div className="container footer__grid">
         <div className="footer__brand-col">
-          <p className="logo__word">
-            Nexa <span className="logo__rx">Rx</span>
-          </p>
+          <Link href="/" className="footer__logo-wrap" aria-label="Nexa Rx home">
+            <img
+              src="/brand/primary-logo.webp"
+              alt="Nexa Rx - Personal Care. Real Results."
+              width={160}
+              height={50}
+              className="footer__logo-img"
+            />
+          </Link>
           <p className="footer__tag">Licensed clinical care. Clear pricing. Qualified U.S. pharmacy fulfillment.</p>
         </div>
         <div className="footer__col">

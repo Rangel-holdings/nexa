@@ -143,20 +143,14 @@ export default function SiteHeader({ variant = 'default' }) {
 
       <header className="header">
         <div className="container header__inner">
-          <Link href="/" className="logo" aria-label="Nexa Rx home" onClick={() => setMenuOpen(false)}>
-            <span className="logo__mark" aria-hidden="true">
-              <svg width="30" height="20" viewBox="0 0 54 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 6H16C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26H22" stroke="#4DAA9A" strokeWidth="4.5" strokeLinecap="round"/>
-                <path d="M32 6H38C43.5228 6 48 10.4772 48 16C48 21.5228 43.5228 26 38 26H32" stroke="#0F1722" strokeWidth="4.5" strokeLinecap="round"/>
-                <circle cx="27" cy="16" r="4.5" fill="#4DAA9A" />
-              </svg>
-            </span>
-            <div className="logo__text-group">
-              <span className="logo__word">
-                Nexa <span className="logo__rx">Rx</span>
-              </span>
-              <span className="logo__subline">PERSONAL CARE. REAL RESULTS.</span>
-            </div>
+          <Link href="/" className="logo-brand-img-wrap" aria-label="Nexa Rx home" onClick={() => setMenuOpen(false)}>
+            <img
+              src="/brand/secondary-lockup.webp"
+              alt="Nexa Rx - Personal Care. Real Results."
+              width={160}
+              height={42}
+              className="logo-brand-img"
+            />
           </Link>
 
           <nav className="nav" aria-label="Primary">

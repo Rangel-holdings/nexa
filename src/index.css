@@ -256,6 +256,32 @@ ul { list-style: none; }
   min-width: 0;
 }
 
+.logo-brand-img-wrap {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logo-brand-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.footer__logo-wrap {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+}
+
+.footer__logo-img {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .logo__mark {
   display: inline-flex;
   align-items: center;
