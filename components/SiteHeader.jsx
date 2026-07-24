@@ -144,6 +144,13 @@ export default function SiteHeader({ variant = 'default' }) {
       <header className="header">
         <div className="container header__inner">
           <Link href="/" className="logo" aria-label="Nexa Rx home" onClick={() => setMenuOpen(false)}>
+            <span className="logo__mark" aria-hidden="true">
+              <svg width="26" height="18" viewBox="0 0 54 36" fill="none">
+                <rect x="2.5" y="2.5" width="31" height="31" rx="15.5" stroke="#4DAA9A" strokeWidth="4.5" />
+                <rect x="20.5" y="2.5" width="31" height="31" rx="15.5" stroke="#0F1722" strokeWidth="4.5" />
+                <circle cx="19.5" cy="18" r="4.5" fill="#4DAA9A" />
+              </svg>
+            </span>
             <span className="logo__word">
               Nexa <span className="logo__rx">Rx</span>
             </span>
