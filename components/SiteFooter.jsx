@@ -10,7 +10,14 @@ const legalLinks = [
 
 export default function SiteFooter() {
   return (
-    <footer className="footer">
+    <>
+      <div className="brand-bottom-banner" aria-hidden="true">
+        <div className="container brand-bottom-banner__inner">
+          <span className="brand-bottom-banner__text">CARE THAT CONNECTS. RESULTS THAT LAST.</span>
+          <span className="brand-bottom-banner__dot" />
+        </div>
+      </div>
+      <footer className="footer">
       <div className="container footer__grid">
         <div className="footer__brand-col">
           <p className="logo__word">
@@ -69,5 +76,6 @@ export default function SiteFooter() {
         </p>
       </div>
     </footer>
+    </>
   )
 }

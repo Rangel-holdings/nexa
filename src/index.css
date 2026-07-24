@@ -262,12 +262,59 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
+.logo__text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
 .logo__word {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1;
+}
+
+.logo__subline {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-top: 0.18rem;
+}
+
+/* Brand Identity Presentation Bottom Banner */
+.brand-bottom-banner {
+  background: var(--sand);
+  border-top: 1px solid rgba(15, 23, 34, 0.08);
+  border-bottom: 1px solid rgba(15, 23, 34, 0.08);
+  padding: 1.1rem 0 1.3rem;
+  text-align: center;
+}
+
+.brand-bottom-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-bottom-banner__text {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.brand-bottom-banner__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--teal);
 }
 
 .logo__rx { color: var(--teal); }
