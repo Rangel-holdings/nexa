@@ -880,48 +880,63 @@ ul { list-style: none; }
   margin-bottom: 1.25rem;
 }
 
-.hero__stats-block {
-  margin-top: 1.35rem;
-  max-width: 36rem;
+.hero__ticker-container {
+  margin-top: 2rem;
   width: 100%;
 }
 
-.hero__stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-.hero__stat-card {
+.hero__ticker-strip {
   position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.6rem 0;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+.hero__ticker-track {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.55rem;
-  padding: 0.85rem 0.85rem 0.9rem;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(10, 154, 158, 0.2);
-  border-radius: 1rem;
+  align-items: center;
+  gap: 1rem;
+  width: max-content;
+  animation: heroTickerScroll 32s linear infinite;
+  will-change: transform;
+}
+
+.hero__ticker-strip:hover .hero__ticker-track {
+  animation-play-state: paused;
+}
+
+.hero__ticker-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1.15rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(10, 154, 158, 0.22);
+  border-radius: 50px;
   box-shadow:
-    0 4px 18px rgba(15, 23, 34, 0.04),
-    0 1px 3px rgba(15, 23, 34, 0.02);
+    0 8px 24px rgba(15, 23, 34, 0.05),
+    0 2px 6px rgba(10, 154, 158, 0.08);
+  flex-shrink: 0;
+  cursor: default;
   transition:
-    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.28s ease,
-    border-color 0.28s ease;
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.hero__stat-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(10, 154, 158, 0.45);
+.hero__ticker-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(10, 154, 158, 0.55);
   box-shadow:
-    0 12px 28px rgba(15, 23, 34, 0.08),
-    0 0 0 2px rgba(10, 154, 158, 0.15);
+    0 14px 32px rgba(15, 23, 34, 0.1),
+    0 0 0 3px rgba(10, 154, 158, 0.18);
 }
 
-.hero__stat-icon {
+.hero__ticker-icon {
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -934,31 +949,26 @@ ul { list-style: none; }
   flex-shrink: 0;
 }
 
-.hero__stat-info {
+.hero__ticker-info {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  width: 100%;
+  line-height: 1.2;
 }
 
-.hero__stat-info strong {
+.hero__ticker-info strong {
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--navy);
   letter-spacing: -0.01em;
-  line-height: 1.25;
-  white-space: normal;
-  overflow: visible;
+  white-space: nowrap;
 }
 
-.hero__stat-info span {
-  font-size: 0.74rem;
+.hero__ticker-info span {
+  font-size: 0.72rem;
   color: var(--slate);
   font-weight: 500;
-  line-height: 1.3;
-  white-space: normal;
-  overflow: visible;
+  white-space: nowrap;
 }
 
 .hero__stats-note {
@@ -967,6 +977,15 @@ ul { list-style: none; }
   color: rgba(15, 23, 34, 0.55);
   font-style: italic;
   line-height: 1.35;
+}
+
+@keyframes heroTickerScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .hero__visual {
@@ -2247,30 +2266,8 @@ ul { list-style: none; }
   .hero__cta .btn {
     width: 100%;
   }
-  .hero__stats {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.45rem;
-  }
-  .hero__stat-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0.55rem 0.5rem;
-    gap: 0.35rem;
-    border-radius: 0.75rem;
-  }
-  .hero__stat-icon {
-    width: 26px;
-    height: 26px;
-  }
-  .hero__stat-icon svg {
-    width: 14px;
-    height: 14px;
-  }
-  .hero__stat-info strong {
-    font-size: 0.78rem;
-  }
-  .hero__stat-info span {
-    font-size: 0.64rem;
+  .hero__ticker-container {
+    margin-top: 1.25rem;
   }
   .hero-card__media { height: 200px; }
   .hero-card__body { padding: 1.1rem 1.1rem 1.25rem; }
