@@ -15,6 +15,47 @@ export const metadata = pageMetadata({
   path: '/',
 })
 
+const stepIcons = [
+  (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+      <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+      <path d="m9 14 2 2 4-4"></path>
+    </svg>
+  ),
+  (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+    </svg>
+  ),
+  (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+    </svg>
+  ),
+  (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+      <polyline points="14 2 14 8 20 8"></polyline>
+      <line x1="16" y1="13" x2="8" y2="13"></line>
+      <line x1="16" y1="17" x2="8" y2="17"></line>
+    </svg>
+  ),
+  (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
+      <path d="m8.5 8.5 7 7"></path>
+    </svg>
+  ),
+  (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21.5 2v6h-6"></path>
+      <path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+    </svg>
+  ),
+]
+
 export default function HomePage() {
   return (
     <PageShell stickyMode="eligibility" headerVariant="home">
@@ -208,12 +249,19 @@ export default function HomePage() {
                 className="media-frame--flush"
               />
             </div>
-            <div className="steps">
-              {careSteps.map((step) => (
-                <article key={step.n} className="step">
-                  <span className="step__n">Step {step.n}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
+            <div className="steps-grid">
+              {careSteps.map((step, idx) => (
+                <article key={step.n} className="step-card" data-reveal="up" style={{ '--delay': `${idx * 70}ms` }}>
+                  <div className="step-card__header">
+                    <div className="step-card__icon" aria-hidden="true">
+                      {stepIcons[idx]}
+                    </div>
+                    <span className="step-card__badge">STEP {step.n}</span>
+                  </div>
+                  <div className="step-card__body">
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
                 </article>
               ))}
             </div>
