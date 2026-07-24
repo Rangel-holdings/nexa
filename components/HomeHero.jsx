@@ -74,7 +74,7 @@ const tickerItems = [
 ]
 
 export default function HomeHero() {
-  const marqueeList = [...tickerItems, ...tickerItems]
+  const marqueeList = [...tickerItems, ...tickerItems, ...tickerItems]
 
   return (
     <section className="hero hero--home">
@@ -148,7 +148,7 @@ export default function HomeHero() {
         </div>
       </div>
 
-      <div className="container hero__ticker-container hero-anim" style={{ '--hero-delay': '340ms' }}>
+      <div className="container hero__ticker-container">
         <div className="hero__ticker-strip">
           <div className="hero__ticker-track">
             {marqueeList.map((item, idx) => (
